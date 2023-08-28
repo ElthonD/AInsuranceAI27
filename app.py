@@ -20,10 +20,10 @@ buffer = io.BytesIO()
 import warnings
 warnings.filterwarnings('ignore')
 
-path_favicon = r'C:\Users\Elthon Daniel Rivas\OneDrive - ILSP GLOBAL SEGURIDAD PRIVADA SAPI DE C.V\Documentos\Areas de Trabajo\Inteligencia de Negocios\Aplicaciones\App AiNSURANCE\img\Logo AInsurance.png'
+path_favicon = './img/Logo AInsurance.png'
 im = Image.open(path_favicon)
 st.set_page_config(page_title='AI27 AInsurance', page_icon=im, layout="wide")
-path = r'C:\Users\Elthon Daniel Rivas\OneDrive - ILSP GLOBAL SEGURIDAD PRIVADA SAPI DE C.V\Documentos\Areas de Trabajo\Inteligencia de Negocios\Aplicaciones\App AiNSURANCE\img\Logo AInsurance.png'
+path = './img/Logo AInsurance.png'
 image = Image.open(path)
 col1, col2, col3 = st.columns([1,2,1])
 col2.image(image, use_column_width=True)
@@ -31,7 +31,7 @@ col2.image(image, use_column_width=True)
 @st.cache_data(show_spinner='Cargando Datos... Espere...', persist=True)
 def load_df():
 
-    ruta = r'C:\Users\Elthon Daniel Rivas\OneDrive - ILSP GLOBAL SEGURIDAD PRIVADA SAPI DE C.V\Documentos\Areas de Trabajo\Inteligencia de Negocios\Aplicaciones\App AiNSURANCE\data\Data prueba.xlsx'
+    ruta = './data/data.xlsx'
     df = pd.read_excel(ruta, sheet_name = "Sheet1")
     df['Fecha y Hora'] = pd.to_datetime(df['Fecha y Hora'], format='%Y-%m-%d %H:%M:%S')
     df['Eco'] = df['Eco'].astype('str')
@@ -129,7 +129,7 @@ try:
                                key=key_name)
 
     if st.button("Guardar"):
-        path1 = r'C:\Users\Elthon Daniel Rivas\OneDrive - ILSP GLOBAL SEGURIDAD PRIVADA SAPI DE C.V\Documentos\Areas de Trabajo\Inteligencia de Negocios\Aplicaciones\App AiNSURANCE\data\Data prueba.xlsx'
+        path1 = './data/data.xlsx'
         edited_df.to_excel(path1, index=False)
         st.write("Se han guardador los cambios")
 
