@@ -128,7 +128,8 @@ try:
                                key=key_name)
 
     if st.button("Guardar"):
-        path1 = './data/data.xlsx'
+        #path1 = './data/data.xlsx'
+        path1 = 'https://github.com/ElthonD/AInsuranceAI27/blob/main/data/data.xlsx'
         edited_df.to_excel(path1, index=False)
         st.write("Se han guardador los cambios")
 
