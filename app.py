@@ -122,7 +122,7 @@ def df_grafico(df):
     df1.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
     df1 = df1.set_index('Fecha y Hora')
     df2 = pd.DataFrame(df1['Placas'].resample('M').count())
-    df2 = df2.rename(columns={'Bitácora':'RECUPERADO'})
+    df2 = df2.rename(columns={'Placas':'RECUPERADO'})
 
     # Para No Cumplimiento
     df3 = df.copy()
@@ -130,7 +130,7 @@ def df_grafico(df):
     df3.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
     df3 = df3.set_index('Fecha y Hora')
     df4 = pd.DataFrame(df3['Placas'].resample('M').count())
-    df4 = df4.rename(columns={'Bitácora':'CONSUMADO'})
+    df4 = df4.rename(columns={'Placas':'CONSUMADO'})
 
     # Unir dataframe
     df5 = pd.concat([df2, df4], axis=1)
@@ -239,8 +239,8 @@ try:
     mapa = map_coropleta_fol(edited_df)
 
     st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
-    d0 = df.copy()
-    d1 = df_grafico(d0)
+
+    d1 = df_grafico(df)
     st.dataframe(d1)
     g1 = g_recuperacion(d1)
 
