@@ -9,6 +9,7 @@ from folium import plugins
 from streamlit_folium import folium_static
 from dateutil.relativedelta import *
 import seaborn as sns; sns.set_theme()
+import plotly.graph_objects as go
 import streamlit as st
 import io
 
@@ -111,6 +112,104 @@ def map_coropleta_fol(df):
     #Mostrar Mapa
     folium_static(MapaMexico, width=1370)
 
+def df_grafico(df):
+
+        df['Fecha y Hora'] = pd.to_datetime(df['Fecha y Hora'], format='%Y-%m-%d', errors='coerce')
+
+        # Para Cumplimiento
+        df1 = df.copy()
+        df1 = df1.loc[df1.loc[:, 'Estatus'] == 'RECUPERADO']
+        df1.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+        df1 = df1.set_index('Fecha y Hora')
+        df2 = pd.DataFrame(df1['Placas'].resample('M').count())
+        df2 = df2.rename(columns={'Bitácora':'RECUPERADO'})
+
+        # Para No Cumplimiento
+        df3 = df.copy()
+        df3 = df3.loc[df3.loc[:, 'Estatus'] == 'CONSUMADO']
+        df3.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+        df3 = df3.set_index('Fecha y Hora')
+        df4 = pd.DataFrame(df3['Placas'].resample('M').count())
+        df4 = df4.rename(columns={'Bitácora':'CONSUMADO'})
+
+        # Unir dataframe
+        df5 = pd.concat([df2, df4], axis=1)
+    
+        # Reset Indíces
+        df5 = df5.reset_index()
+
+        # Preparar Dataframe Final
+        df5['Mes'] = df5['Fecha y Hora'].dt.month_name(locale='Spanish')
+        df5['Año'] = df5['Fecha y Hora'].dt.year
+        df5 = df5.fillna(0)
+        df5['Total'] = (df5['RECUPERADO'] + df5['CONSUMADO'])
+        df5['Cumplimiento (%)'] = (df5['RECUPERADO'] / df5['Total']) * 100
+        df5['Tasa Cumplimiento (%)'] = (df5['RECUPERADO'].diff()/df5['CONSUMADO'].shift())*100
+        df5['Mes Año'] = df5['Mes'] + ' ' + df5['Año'].astype(str)
+        df5 = df5.dropna()
+
+        return df5
+    
+def g_recuperacion(df):
+
+        sr_data1 = go.Bar(x = df['Fecha y Hora'],
+                        y=df['RECUPERADO'],
+                        opacity=0.8,
+                        yaxis = 'y1',
+                        name='Recuperado',
+                        text= [f'Recuperado(s): {x:.0f}' for x in df['RECUPERADO']]
+                        )
+    
+        sr_data2 = go.Bar(x = df['Fecha y Hora'],
+                        y=df['CONSUMADO'],
+                        opacity=0.8,
+                        yaxis = 'y1',
+                        name='Consumado',
+                        text= [f'Consumado(s): {x:.0f}' for x in df['CONSUMADO']]
+                        )
+        
+        sr_data3 = go.Scatter(x = df['Fecha y Hora'],
+                        y=df['Cumplimiento (%)'],
+                        line=go.scatter.Line(color='green', width = 0.6),
+                        opacity=0.8,
+                        yaxis = 'y2',
+                        hoverinfo = 'text',
+                        name='% Cumplimiento',
+                        text= [f'Cumplimiento: {x:.0f}%' for x in df['Cumplimiento (%)']])
+    
+        # Create a layout with interactive elements and two yaxes
+        layout = go.Layout(height=700, width=1400, font=dict(size=10),
+                   title='Robos',
+                   plot_bgcolor="#FFF",
+                   xaxis=dict(showgrid=False, title='Fecha',
+                                        # Range selector with buttons
+                                         rangeselector=dict(
+                                             # Buttons for selecting time scale
+                                             buttons=list([
+                                                 # 1 month
+                                                 dict(count=1,
+                                                      label='1m',
+                                                      step='month',
+                                                      stepmode='backward'),
+                                                 # Entire scale
+                                                 dict(step='all')
+                                             ])
+                                         ),
+                                         # Sliding for selecting time window
+                                         rangeslider=dict(visible=True),
+                                         # Type of xaxis
+                                         type='date'),
+                   yaxis=dict(showgrid=False, title='Cantidadde Robos', color='red', side = 'left'),
+                   # Add a second yaxis to the right of the plot
+                   yaxis2=dict(showgrid=False, title='% Recuperación/Mes', color='blue',
+                                          overlaying='y1',
+                                          side='right')
+                   )
+        fig = go.Figure(data=[sr_data1, sr_data2, sr_data3], layout=layout)
+        fig.update_layout(barmode='stack')
+        st.plotly_chart(fig)
+
+
 try:
 
     df = load_df()
@@ -140,6 +239,12 @@ try:
 
     mapa = map_coropleta_fol(edited_df)
 
+    st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
+    d0 = df.copy()
+    d1 = df_grafico(d0)
+    g1 = g_recuperacion(d1)
+
+    
 except NameError as e:
     print("Seleccionar: ", e)
 
