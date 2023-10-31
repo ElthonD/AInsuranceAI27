@@ -235,7 +235,7 @@ try:
 
     st.markdown("<h3 style='text-align: left;'>Mapa de Robos</h3>", unsafe_allow_html=True)
 
-    mapa = map_coropleta_fol(edited_df)
+    mapa = map_coropleta_fol(df)
 
     st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
 
