@@ -240,8 +240,8 @@ try:
 
     st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
     d0 = df.copy()
-    st.dataframe(d0)
     d1 = df_grafico(d0)
+    st.dataframe(d1)
     g1 = g_recuperacion(d1)
 
 except NameError as e:
