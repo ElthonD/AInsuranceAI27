@@ -28,7 +28,6 @@ image = Image.open(path)
 col1, col2, col3 = st.columns([1,2,1])
 col2.image(image, use_column_width=True)
 
-@st.cache_data(show_spinner='Cargando Datos... Espere...', persist=True)
 def load_df():
 
     ruta = './data/data.xlsx'
