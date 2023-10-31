@@ -111,7 +111,44 @@ def map_coropleta_fol(df):
 
     #Mostrar Mapa
     folium_static(MapaMexico, width=1370)
+
+def df_grafico(df):
     
+        df['Fecha y Hora'] = pd.to_datetime(df['Fecha y Hora'], format='%Y-%m-%d', errors='coerce')
+
+        # Para Cumplimiento
+        df1 = df.copy()
+        df1 = df1.loc[df1.loc[:, 'Estatus'] == 'RECUPERADO']
+        df1.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+        df1 = df1.set_index('Fecha y Hora')
+        df2 = pd.DataFrame(df1['Placas'].resample('M').count())
+        df2 = df2.rename(columns={'Placas':'RECUPERADO'})
+
+        # Para No Cumplimiento
+        df3 = df.copy()
+        df3 = df3.loc[df3.loc[:, 'Estatus'] == 'CONSUMADO']
+        df3.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+        df3 = df3.set_index('Fecha y Hora')
+        df4 = pd.DataFrame(df3['Placas'].resample('M').count())
+        df4 = df4.rename(columns={'Placas':'CONSUMADO'})
+
+        # Unir dataframe
+        df5 = pd.concat([df2, df4], axis=1)
+    
+        # Reset Indíces
+        df5 = df5.reset_index()
+
+        # Preparar Dataframe Final
+        df5['Mes'] = df5['Fecha y Hora'].dt.month_name(locale='Spanish')
+        df5['Año'] = df5['Fecha y Hora'].dt.year
+        df5 = df5.fillna(0)
+        df5['Total'] = (df5['RECUPERADO'] + df5['CONSUMADO'])
+        df5['Cumplimiento (%)'] = (df5['RECUPERADO'] / df5['Total']) * 100
+        df5['Mes Año'] = df5['Mes'] + ' ' + df5['Año'].astype(str)
+        df5 = df5.dropna()
+
+        return df5
+
 def g_recuperacion(df):
 
     sr_data1 = go.Bar(x = df['Fecha y Hora'],
@@ -195,53 +232,15 @@ try:
 
     #st.write(st.session_state["my_df"])
     #st.data_editor(df, num_rows="dynamic")
-
-    st.markdown("<h3 style='text-align: left;'>Mapa de Robos</h3>", unsafe_allow_html=True)
-
-    mapa = map_coropleta_fol(edited_df)
-
     st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
-
-    def df_grafico(df):
-    
-        df['Fecha y Hora'] = pd.to_datetime(df['Fecha y Hora'], format='%Y-%m-%d', errors='coerce')
-
-        # Para Cumplimiento
-        df1 = df.copy()
-        df1 = df1.loc[df1.loc[:, 'Estatus'] == 'RECUPERADO']
-        df1.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
-        df1 = df1.set_index('Fecha y Hora')
-        df2 = pd.DataFrame(df1['Placas'].resample('M').count())
-        df2 = df2.rename(columns={'Placas':'RECUPERADO'})
-
-        # Para No Cumplimiento
-        df3 = df.copy()
-        df3 = df3.loc[df3.loc[:, 'Estatus'] == 'CONSUMADO']
-        df3.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
-        df3 = df3.set_index('Fecha y Hora')
-        df4 = pd.DataFrame(df3['Placas'].resample('M').count())
-        df4 = df4.rename(columns={'Placas':'CONSUMADO'})
-
-        # Unir dataframe
-        df5 = pd.concat([df2, df4], axis=1)
-    
-        # Reset Indíces
-        df5 = df5.reset_index()
-
-        # Preparar Dataframe Final
-        df5['Mes'] = df5['Fecha y Hora'].dt.month_name(locale='Spanish')
-        df5['Año'] = df5['Fecha y Hora'].dt.year
-        df5 = df5.fillna(0)
-        df5['Total'] = (df5['RECUPERADO'] + df5['CONSUMADO'])
-        df5['Cumplimiento (%)'] = (df5['RECUPERADO'] / df5['Total']) * 100
-        df5['Mes Año'] = df5['Mes'] + ' ' + df5['Año'].astype(str)
-        df5 = df5.dropna()
-
-        return df5
 
     d1 = df_grafico(df)
     st.dataframe(d1)
     g1 = g_recuperacion(d1)
+
+    st.markdown("<h3 style='text-align: left;'>Mapa de Robos</h3>", unsafe_allow_html=True)
+
+    mapa = map_coropleta_fol(edited_df)
 
 except NameError as e:
     print("Seleccionar: ", e)
