@@ -232,15 +232,16 @@ try:
 
     #st.write(st.session_state["my_df"])
     #st.data_editor(df, num_rows="dynamic")
-    st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
-
-    d1 = df_grafico(df)
-    st.dataframe(d1)
-    g1 = g_recuperacion(d1)
 
     st.markdown("<h3 style='text-align: left;'>Mapa de Robos</h3>", unsafe_allow_html=True)
 
     mapa = map_coropleta_fol(edited_df)
+
+    st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
+
+    d1 = df_grafico(edited_df)
+    st.dataframe(d1)
+    g1 = g_recuperacion(d1)
 
 except NameError as e:
     print("Seleccionar: ", e)
