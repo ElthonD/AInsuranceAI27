@@ -270,7 +270,7 @@ try:
     c1, c2 = st.columns((1,1))
     with c1:
         st.markdown("<h3 style='text-align: left;'>Gráfico Mensual de Robos</h3>", unsafe_allow_html=True)
-        d1 = df_grafico1(edited_df)
+        d1 = df_grafico(edited_df)
         #st.write(d1)
         g1 = g_recuperacion(d1)
     with c2:
