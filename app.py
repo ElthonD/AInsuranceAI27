@@ -150,6 +150,9 @@ def df_grafico(df):
         df5['% Consumado'] = round((df5['CONSUMADO'] / df5['Total']),2) * 100
         df5['Recuperados (%)'] = round((df5['RECUPERADO'] / df5['Total']),2) * 100
         df5['Mes Año'] = df5['Mes'] + ' ' + df5['Año'].astype(str)
+        
+        df5 = df5.set_index('Mes Año')
+
         df5 = df5.dropna()
 
         return df5
@@ -179,7 +182,7 @@ def df_grafico1(df):
 
 def g_recuperacion(df):
 
-    sr_data1 = go.Bar(x = df['Fecha y Hora'],
+    sr_data1 = go.Bar(x = df['Mes Año'],
                         y=df['RECUPERADO'],
                         opacity=0.8,
                         yaxis = 'y1',
@@ -187,7 +190,7 @@ def g_recuperacion(df):
                         text= [f'Recuperado(s): {x:.0f}' for x in df['RECUPERADO']]
                         )
     
-    sr_data2 = go.Bar(x = df['Fecha y Hora'],
+    sr_data2 = go.Bar(x = df['Mes Año'],
                         y=df['CONSUMADO'],
                         opacity=0.8,
                         yaxis = 'y1',
@@ -195,7 +198,7 @@ def g_recuperacion(df):
                         text= [f'Consumado(s): {x:.0f}' for x in df['CONSUMADO']]
                         )
     
-    sr_data3 = go.Bar(x = df['Fecha y Hora'],
+    sr_data3 = go.Bar(x = df['Mes Año'],
                         y=df['Total'],
                         opacity=0.8,
                         yaxis = 'y1',
@@ -203,7 +206,7 @@ def g_recuperacion(df):
                         text= [f'Intentos: {x:.0f}' for x in df['Total']]
                         )
     
-    sr_data4 = go.Scatter(x = df['Fecha y Hora'],
+    sr_data4 = go.Scatter(x = df['Mes Año'],
                         y=df['Recuperados (%)'],
                         line=go.scatter.Line(color='green', width = 0.6),
                         opacity=0.8,
