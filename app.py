@@ -145,9 +145,9 @@ def df_grafico(df):
         df5['Año'] = df5['Fecha y Hora'].dt.year
         df5 = df5.fillna(0)
         df5['Total'] = (df5['RECUPERADO'] + df5['CONSUMADO'])
-        df5['% Recuperado'] = (df5['RECUPERADO'] / df5['Total']) * 100
-        df5['% Consumado'] = (df5['RECUPERADO'] - 1) * 100
-        df5['Cumplimiento (%)'] = (df5['RECUPERADO'] / df5['Total']) * 100
+        df5['% Recuperado'] = round((df5['RECUPERADO'] / df5['Total']),2) * 100
+        df5['% Consumado'] = round((df5['CONSUMADO'] / df5['Total']),2) * 100
+        df5['Recuperados (%)'] = (df5['RECUPERADO'] / df5['Total']) * 100
         df5['Mes Año'] = df5['Mes'] + ' ' + df5['Año'].astype(str)
         df5 = df5.dropna()
 
@@ -178,7 +178,7 @@ def g_recuperacion(df):
                         yaxis = 'y2',
                         hoverinfo = 'text',
                         name='% Recuperados',
-                        text= [f'Cumplimiento: {x:.0f}%' for x in df['Cumplimiento (%)']])
+                        text= [f'Recuperados(s): {x:.0f}%' for x in df['Recuperados (%)']])
     
     # Create a layout with interactive elements and two yaxes
     layout = go.Layout(height=700, width=1400, font=dict(size=10),
@@ -202,7 +202,7 @@ def g_recuperacion(df):
                                          rangeslider=dict(visible=True),
                                          # Type of xaxis
                                          type='date'),
-                   yaxis=dict(showgrid=False, title='Cantidadde Robos', color='red', side = 'left'),
+                   yaxis=dict(showgrid=False, title='Cantidad de Robos', color='red', side = 'left'),
                    # Add a second yaxis to the right of the plot
                    yaxis2=dict(showgrid=False, title='% Recuperación/Mes', color='blue',
                                           overlaying='y1',
@@ -251,10 +251,11 @@ try:
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
         d2 = d1.copy()
-        st.dataframe(d2)
-        FreR = pd.value_counts(d2['RECUPERADO'])
-        FreC = pd.value_counts(d2['CONSUMADO'])
-        st.dataframe(FreR)
+        d3 = d2.groupby('RECUPERADO', sort=False)['Total'].count()
+        st.dataframe(d3)
+        #FreR = pd.value_counts(d2['RECUPERADO'])
+        #FreC = pd.value_counts(d2['CONSUMADO'])
+        #st.dataframe(FreR)
 
 
         #df5['% Recuperado'] = (df5['RECUPERADO'] / df5['Total']) * 100
