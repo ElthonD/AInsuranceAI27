@@ -251,8 +251,9 @@ try:
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
         d2 = d1.copy()
-        d3 = d2.groupby(['% Recuperado', '% Consumado']).values()
-
+        d3 = d2.groupby(['RECUPERADO'])['RECUPERADO'].count()
+        st.dataframe(d3)
+        d4 = d2.groupby(['CONSUMADO'])['CONSUMADO'].count()
 
 
         #df5['% Recuperado'] = (df5['RECUPERADO'] / df5['Total']) * 100
