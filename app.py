@@ -244,9 +244,7 @@ try:
     st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
 
     df11 = df.groupby(['Estatus']).size()
-    df11 = df11.columns = ['Estatus', 'Total']
-    #df11 = df11.rename(columns={0:'Total'})
-
+    df11.rename(columns={0:'Total'})
     st.write(df11)
     
     c1, c2 = st.columns((1,1))
