@@ -250,14 +250,14 @@ try:
         g1 = g_recuperacion(d1)
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
-        d2 = d1.copy()
+        d2 = df.copy()
         #table = pd.pivot_table(d2, values='RECUPERADO', index=['RECUPERADO'], aggfunc="sum")
         st.dataframe(d2)
-        FreR = d2['RECUPERADO'].sum()
-        FreC = d2['CONSUMADO'].sum()
+        #FreR = d2['RECUPERADO'].sum()
+        #FreC = d2['CONSUMADO'].sum()
         #FreR = pd.value_counts(d2['RECUPERADO'])
         #FreC = pd.value_counts(d2['CONSUMADO'])
-        st.dataframe(FreR)
+        #st.dataframe(FreR)
 
 
         #df5['% Recuperado'] = (df5['RECUPERADO'] / df5['Total']) * 100
