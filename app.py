@@ -148,7 +148,7 @@ def df_grafico(df):
         df5['% Recuperado'] = round((df5['RECUPERADO'] / df5['Total']),2) * 100
         df5['% Consumado'] = round((df5['CONSUMADO'] / df5['Total']),2) * 100
         df5['Recuperados (%)'] = ((df5['RECUPERADO'] / df5['Total']),2) * 100
-        df5['Mes Año'] = df5['Mes'] + ' ' + df5['Año'].astype(str)
+        #df5['Mes Año'] = df5['Mes'] + ' ' + df5['Año'].astype(str)
         df5 = df5.dropna()
 
         return df5
@@ -243,6 +243,9 @@ try:
 
     st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
 
+    df11 = df.groupby(['Estatus']).size()
+    st.write(df11)
+    
     c1, c2 = st.columns((1,1))
     with c1:
         st.markdown("<h3 style='text-align: left;'>Gráfico Mensual de Robos</h3>", unsafe_allow_html=True)
@@ -250,7 +253,8 @@ try:
         g1 = g_recuperacion(d1)
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
-
+        df11 = df.groupby(['Estatus']).size()
+        st.write(df11)
 except NameError as e:
     print("Seleccionar: ", e)
 
