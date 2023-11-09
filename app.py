@@ -243,29 +243,23 @@ try:
 
     st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
 
-    df11 = df.groupby(['Estatus']).size()
-    Frec = pd.DataFrame(df11)
-    Frec.reset_index(drop = False, inplace = True)
-    Frec = Frec.rename(columns={'Estatus':'Tipo de Evento', 0:'Total'})
-    plt.figure(figsize = (2,2))
-    st.write(px.pie(Frec, values='Total', names='Tipo de Evento'))
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot()
-    #columns_names = Frec.columns.values
-    #print(columns_names)
-    #df11.set_axis(['Estatus', 'Total'], axis=1)
-    #df11.rename(columns={0:'Total'})
-    st.dataframe(Frec)
-    
     c1, c2 = st.columns((1,1))
     with c1:
         st.markdown("<h3 style='text-align: left;'>Gráfico Mensual de Robos</h3>", unsafe_allow_html=True)
         d1 = df_grafico(edited_df)
-        g1 = g_recuperacion(d1)
+        st.write(d1)
+        #g1 = g_recuperacion(d1)
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
-        df11 = df.groupby(['Estatus']).size()
-        st.write(df11)
+        df_pie = df.groupby(['Estatus']).size()
+        df_pie1 = pd.DataFrame(df_pie)
+        df_pie1.reset_index(drop = False, inplace = True)
+        df_pie1 = df_pie1.rename(columns={'Estatus':'Tipo de Evento', 0:'Total'})
+        plt.figure(figsize = (2,2))
+        st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
+        st.set_option('deprecation.showPyplotGlobalUse', False)
+        st.pyplot()
+
 except NameError as e:
     print("Seleccionar: ", e)
 
