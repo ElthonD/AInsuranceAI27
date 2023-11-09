@@ -254,7 +254,7 @@ try:
         #freq = df.groupby(["Estatus"]).count()
         #Frec = pd.value_counts(d2['Estatus'])
         #table = pd.pivot_table(d2, values='RECUPERADO', index=['RECUPERADO'], aggfunc="sum")
-        st.dataframe(df)
+        st.dataframe(edited_df)
         #FreR = d2['RECUPERADO'].sum()
         #FreC = d2['CONSUMADO'].sum()
         #FreR = pd.value_counts(d2['RECUPERADO'])
