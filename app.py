@@ -251,10 +251,10 @@ try:
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
         #d2 = df.copy()
-        freq = df.groupby(["Estatus"]).count()
+        #freq = df.groupby(["Estatus"]).count()
         #Frec = pd.value_counts(d2['Estatus'])
         #table = pd.pivot_table(d2, values='RECUPERADO', index=['RECUPERADO'], aggfunc="sum")
-        st.dataframe(freq)
+        st.dataframe(df)
         #FreR = d2['RECUPERADO'].sum()
         #FreC = d2['CONSUMADO'].sum()
         #FreR = pd.value_counts(d2['RECUPERADO'])
