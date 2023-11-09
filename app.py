@@ -154,6 +154,29 @@ def df_grafico(df):
 
         return df5
 
+def df_grafico1(df):
+
+    df['MesN'] = df['Fecha y Hora'].apply(lambda x: x.month)
+    df['Mes'] = df['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
+    df['Año'] = df['Fecha y Hora'].dt.year
+    df['Mes Año'] = df['Mes'] + ' ' + df['Año'].astype(str)
+    df = df.fillna(0)
+
+    df_bar = df.groupby(['Mes Año','Estatus']).size()
+    df_bar1 = pd.DataFrame(df_bar)
+    df_bar1.reset_index(drop = False, inplace = True)
+    #df_bar1 = df_bar1.rename(columns={'Estatus':'Tipo de Evento', 0:'Total'})
+    # Preparar Dataframe Final
+   
+    #df_bar1['Total'] = (df_bar1['RECUPERADO'] + df_bar1['CONSUMADO'])
+    #df_bar1['% Recuperado'] = round((df_bar1['RECUPERADO'] / df_bar1['Total']),2) * 100
+    #df_bar1['% Consumado'] = round((df_bar1['CONSUMADO'] / df_bar1['Total']),2) * 100
+    #df_bar1['Recuperados (%)'] = round((df_bar1['RECUPERADO'] / df_bar1['Total']),2) * 100
+    #df_bar1 = df_bar1.dropna()
+
+    return df_bar1
+
+
 def g_recuperacion(df):
 
     sr_data1 = go.Bar(x = df['Mes'],
@@ -247,8 +270,9 @@ try:
     c1, c2 = st.columns((1,1))
     with c1:
         st.markdown("<h3 style='text-align: left;'>Gráfico Mensual de Robos</h3>", unsafe_allow_html=True)
-        d1 = df_grafico(edited_df)
-        g1 = g_recuperacion(d1)
+        d1 = df_grafico1(edited_df)
+        st.write(d1)
+        #g1 = g_recuperacion(d1)
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
         df_pie = df.groupby(['Estatus']).size()
@@ -259,6 +283,11 @@ try:
         st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
+
+
+
+
+
 
 except NameError as e:
     print("Seleccionar: ", e)
