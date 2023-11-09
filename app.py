@@ -155,7 +155,7 @@ def df_grafico(df):
 
 def g_recuperacion(df):
 
-    sr_data1 = go.Bar(x = df['Fecha y Hora'],
+    sr_data1 = go.Bar(x = df['Mes'],
                         y=df['RECUPERADO'],
                         opacity=0.8,
                         yaxis = 'y1',
@@ -163,7 +163,7 @@ def g_recuperacion(df):
                         text= [f'Recuperado(s): {x:.0f}' for x in df['RECUPERADO']]
                         )
     
-    sr_data2 = go.Bar(x = df['Fecha y Hora'],
+    sr_data2 = go.Bar(x = df['Mes'],
                         y=df['CONSUMADO'],
                         opacity=0.8,
                         yaxis = 'y1',
@@ -171,7 +171,7 @@ def g_recuperacion(df):
                         text= [f'Consumado(s): {x:.0f}' for x in df['CONSUMADO']]
                         )
         
-    sr_data3 = go.Scatter(x = df['Fecha y Hora'],
+    sr_data3 = go.Scatter(x = df['Mes'],
                         y=df['Recuperados (%)'],
                         line=go.scatter.Line(color='green', width = 0.6),
                         opacity=0.8,
