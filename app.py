@@ -252,8 +252,10 @@ try:
         st.markdown('### Segmentación de Intentos de Robos')
         d2 = d1.copy()
         #table = pd.pivot_table(d2, values='RECUPERADO', index=['RECUPERADO'], aggfunc="sum")
-        #st.dataframe(table)
-        FreR = pd.value_counts(d2['RECUPERADO'])
+        st.dataframe(d2)
+        FreR = d2['RECUPERADO'].sum()
+        FreC = d2['CONSUMADO'].sum()
+        #FreR = pd.value_counts(d2['RECUPERADO'])
         #FreC = pd.value_counts(d2['CONSUMADO'])
         st.dataframe(FreR)
 
