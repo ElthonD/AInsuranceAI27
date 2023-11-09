@@ -165,7 +165,7 @@ def df_grafico1(df):
     df_bar = df.groupby(['Mes Año','Estatus']).size()
     df_bar1 = pd.DataFrame(df_bar)
     df_bar1.reset_index(drop = False, inplace = True)
-    #df_bar1 = df_bar1.rename(columns={'Estatus':'Tipo de Evento', 0:'Total'})
+    df_bar1 = df_bar1.rename(columns={0:'Total'})
     # Preparar Dataframe Final
    
     #df_bar1['Total'] = (df_bar1['RECUPERADO'] + df_bar1['CONSUMADO'])
@@ -283,11 +283,6 @@ try:
         st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
-
-
-
-
-
 
 except NameError as e:
     print("Seleccionar: ", e)
