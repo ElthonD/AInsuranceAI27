@@ -251,6 +251,7 @@ try:
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
         d2 = d1.copy()
+        st.dataframe(d2)
         FreR = pd.value_counts(d2['RECUPERADO'])
         FreC = pd.value_counts(d2['CONSUMADO'])
         st.dataframe(FreR)
