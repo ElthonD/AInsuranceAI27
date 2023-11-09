@@ -245,6 +245,8 @@ try:
 
     df11 = df.groupby(['Estatus']).size()
     Frec = pd.DataFrame(df11)
+    columns_names = Frec.columns.values
+    print(columns_names)
     #df11.set_axis(['Estatus', 'Total'], axis=1)
     #df11.rename(columns={0:'Total'})
     st.dataframe(Frec)
