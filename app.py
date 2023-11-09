@@ -246,7 +246,7 @@ try:
     df11 = df.groupby(['Estatus']).size()
     Frec = pd.DataFrame(df11)
     Frec.reset_index(drop = False, inplace = True)
-    #Frec = Frec.rename(columns={'index':'Tipo de Servicio', 'Tipo Servicio':'Cantidad'})
+    Frec = Frec.rename(columns={'Estatus':'Tipo de Evento', '0':'Total'})
     
     #columns_names = Frec.columns.values
     #print(columns_names)
