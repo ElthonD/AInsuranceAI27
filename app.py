@@ -250,8 +250,8 @@ try:
         g1 = g_recuperacion(d1)
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
-        d2 = df.copy()
-        freq = d2.groupby(["Estatus"]).count()
+        #d2 = df.copy()
+        freq = df.groupby(["Estatus"]).count()
         #Frec = pd.value_counts(d2['Estatus'])
         #table = pd.pivot_table(d2, values='RECUPERADO', index=['RECUPERADO'], aggfunc="sum")
         st.dataframe(freq)
