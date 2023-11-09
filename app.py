@@ -244,9 +244,10 @@ try:
     st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
 
     df11 = df.groupby(['Estatus']).size()
-    df11.set_axis(['Estatus', 'Total'], axis=1)
+    Frec = pd.DataFrame(df11)
+    #df11.set_axis(['Estatus', 'Total'], axis=1)
     #df11.rename(columns={0:'Total'})
-    st.dataframe(df11)
+    st.dataframe(Frec)
     
     c1, c2 = st.columns((1,1))
     with c1:
