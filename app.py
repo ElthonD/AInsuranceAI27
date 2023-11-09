@@ -179,23 +179,31 @@ def df_grafico1(df):
 
 def g_recuperacion(df):
 
-    sr_data1 = go.Bar(x = df['Mes Año'],
+    sr_data1 = go.Bar(x = df['Fecha y Hora'],
                         y=df['RECUPERADO'],
                         opacity=0.8,
                         yaxis = 'y1',
-                        name='Recuperado',
+                        name='Recuperados',
                         text= [f'Recuperado(s): {x:.0f}' for x in df['RECUPERADO']]
                         )
     
-    sr_data2 = go.Bar(x = df['Mes Año'],
+    sr_data2 = go.Bar(x = df['Fecha y Hora'],
                         y=df['CONSUMADO'],
                         opacity=0.8,
                         yaxis = 'y1',
-                        name='Consumado',
+                        name='Consumados',
                         text= [f'Consumado(s): {x:.0f}' for x in df['CONSUMADO']]
                         )
-        
-    sr_data3 = go.Scatter(x = df['Mes Año'],
+    
+    sr_data3 = go.Bar(x = df['Fecha y Hora'],
+                        y=df['Total'],
+                        opacity=0.8,
+                        yaxis = 'y1',
+                        name='Intentos',
+                        text= [f'Intentos: {x:.0f}' for x in df['Total']]
+                        )
+    
+    sr_data4 = go.Scatter(x = df['Fecha y Hora'],
                         y=df['Recuperados (%)'],
                         line=go.scatter.Line(color='green', width = 0.6),
                         opacity=0.8,
@@ -232,7 +240,7 @@ def g_recuperacion(df):
                                           overlaying='y1',
                                           side='right')
                    )
-    fig = go.Figure(data=[sr_data1, sr_data2, sr_data3], layout=layout)
+    fig = go.Figure(data=[sr_data1, sr_data2, sr_data3, sr_data4], layout=layout)
     fig.update_layout(barmode='stack')
     st.plotly_chart(fig)
 
