@@ -250,25 +250,6 @@ try:
         g1 = g_recuperacion(d1)
     with c2:
         st.markdown('### Segmentación de Intentos de Robos')
-        #d2 = df.copy()
-        #freq = df.groupby(["Estatus"]).count()
-        #Frec = pd.value_counts(d2['Estatus'])
-        #table = pd.pivot_table(d2, values='RECUPERADO', index=['RECUPERADO'], aggfunc="sum")
-        st.dataframe(edited_df)
-        #FreR = d2['RECUPERADO'].sum()
-        #FreC = d2['CONSUMADO'].sum()
-        #FreR = pd.value_counts(d2['RECUPERADO'])
-        #FreC = pd.value_counts(d2['CONSUMADO'])
-        #st.dataframe(FreR)
-
-
-        #df5['% Recuperado'] = (df5['RECUPERADO'] / df5['Total']) * 100
-        #df5['% Consumado'] = (df5['RECUPERADO'] - 1) * 100
-        #st.dataframe(d3)
-        #plt.figure(figsize = (2,2))
-        #st.write(px.pie(d2, values=['% Recuperado', '% Consumado']))
-        #st.set_option('deprecation.showPyplotGlobalUse', False)
-        #st.pyplot()
 
 except NameError as e:
     print("Seleccionar: ", e)
