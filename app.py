@@ -172,7 +172,7 @@ def g_recuperacion(df):
                         )
         
     sr_data3 = go.Scatter(x = df['Fecha y Hora'],
-                        y=df['Cumplimiento (%)'],
+                        y=df['Recuperados (%)'],
                         line=go.scatter.Line(color='green', width = 0.6),
                         opacity=0.8,
                         yaxis = 'y2',
