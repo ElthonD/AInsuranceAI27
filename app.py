@@ -119,7 +119,7 @@ def df_grafico(df):
         # Para Cumplimiento
         df1 = df.copy()
         df1 = df1.loc[df1.loc[:, 'Estatus'] == 'RECUPERADO']
-        df1.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+        df1.drop(['Dia','Motivo Entrada', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
         df1 = df1.set_index('Fecha y Hora')
         df2 = pd.DataFrame(df1['Placas'].resample('M').count())
         df2 = df2.rename(columns={'Placas':'RECUPERADO'})
@@ -127,7 +127,7 @@ def df_grafico(df):
         # Para No Cumplimiento
         df3 = df.copy()
         df3 = df3.loc[df3.loc[:, 'Estatus'] == 'CONSUMADO']
-        df3.drop(['Dia','Motivo Entrada', 'Placas', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+        df3.drop(['Dia','Motivo Entrada', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
         df3 = df3.set_index('Fecha y Hora')
         df4 = pd.DataFrame(df3['Placas'].resample('M').count())
         df4 = df4.rename(columns={'Placas':'CONSUMADO'})
