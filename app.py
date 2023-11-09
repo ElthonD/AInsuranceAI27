@@ -10,6 +10,8 @@ from streamlit_folium import folium_static
 from dateutil.relativedelta import *
 import seaborn as sns; sns.set_theme()
 import plotly.graph_objects as go
+import plotly.express as px
+import matplotlib.pyplot as plt
 import streamlit as st
 import io
 
@@ -143,6 +145,8 @@ def df_grafico(df):
         df5['Año'] = df5['Fecha y Hora'].dt.year
         df5 = df5.fillna(0)
         df5['Total'] = (df5['RECUPERADO'] + df5['CONSUMADO'])
+        df5['% Recuperado'] = (df5['RECUPERADO'] / df5['Total']) * 100
+        df5['% Consumado'] = (df5['RECUPERADO'] - 1) * 100
         df5['Cumplimiento (%)'] = (df5['RECUPERADO'] / df5['Total']) * 100
         df5['Mes Año'] = df5['Mes'] + ' ' + df5['Año'].astype(str)
         df5 = df5.dropna()
@@ -173,7 +177,7 @@ def g_recuperacion(df):
                         opacity=0.8,
                         yaxis = 'y2',
                         hoverinfo = 'text',
-                        name='% Cumplimiento',
+                        name='% Recuperados',
                         text= [f'Cumplimiento: {x:.0f}%' for x in df['Cumplimiento (%)']])
     
     # Create a layout with interactive elements and two yaxes
@@ -239,9 +243,20 @@ try:
 
     st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
 
-    d1 = df_grafico(edited_df)
-    st.dataframe(d1)
-    g1 = g_recuperacion(d1)
+    c1, c2 = st.columns((1,1))
+    with c1:
+        st.markdown("<h3 style='text-align: left;'>Gráfico Mensual de Robos</h3>", unsafe_allow_html=True)
+        d1 = df_grafico(edited_df)
+        g1 = g_recuperacion(d1)
+    with c2:
+        st.markdown('### Segmentación de Intentos de Robos')
+        d2 = d1.copy()
+        d3 = d2.groupby(['% Recuperado', '% Consumado'])
+        st.dataframe(d3)
+        #plt.figure(figsize = (2,2))
+        #st.write(px.pie(d2, values=['% Recuperado', '% Consumado']))
+        #st.set_option('deprecation.showPyplotGlobalUse', False)
+        #st.pyplot()
 
 except NameError as e:
     print("Seleccionar: ", e)
