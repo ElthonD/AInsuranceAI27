@@ -247,7 +247,10 @@ try:
     Frec = pd.DataFrame(df11)
     Frec.reset_index(drop = False, inplace = True)
     Frec = Frec.rename(columns={'Estatus':'Tipo de Evento', 0:'Total'})
-    
+    plt.figure(figsize = (2,2))
+    st.write(px.pie(Frec, values='Total', names='Tipo de Evento'))
+    st.set_option('deprecation.showPyplotGlobalUse', False)
+    st.pyplot()
     #columns_names = Frec.columns.values
     #print(columns_names)
     #df11.set_axis(['Estatus', 'Total'], axis=1)
