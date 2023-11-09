@@ -147,7 +147,7 @@ def df_grafico(df):
         df5['Total'] = (df5['RECUPERADO'] + df5['CONSUMADO'])
         df5['% Recuperado'] = round((df5['RECUPERADO'] / df5['Total']),2) * 100
         df5['% Consumado'] = round((df5['CONSUMADO'] / df5['Total']),2) * 100
-        df5['Recuperados (%)'] = ((df5['RECUPERADO'] / df5['Total']),2) * 100
+        df5['Recuperados (%)'] = round((df5['RECUPERADO'] / df5['Total']),2) * 100
         #df5['Mes Año'] = df5['Mes'] + ' ' + df5['Año'].astype(str)
         df5 = df5.dropna()
 
