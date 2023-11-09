@@ -216,7 +216,7 @@ def g_recuperacion(df):
                         text= [f'Recuperados(s): {x:.0f}%' for x in df['Recuperados (%)']])
     
     # Create a layout with interactive elements and two yaxes
-    layout = go.Layout(height=500, width=1000, font=dict(size=10),
+    layout = go.Layout(height=500, width=700, font=dict(size=10),
                    title='Robos',
                    plot_bgcolor="#FFF",
                    xaxis=dict(showgrid=False, title='Fecha',
