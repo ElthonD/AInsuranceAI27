@@ -21,8 +21,6 @@ def insert_user(username, name, password):
     """Devuelve el usuario tras una creación exitosa; de lo contrario, genera un error"""
     return db.put({"key": username, "name": name, "password": password})
 
-insert_user("admin", "Elthon Rivas", "Qan40646")
-
 def fetch_all_users():
     """Devuelve un diccionario de todos los usuarios."""
     res = db.fetch()

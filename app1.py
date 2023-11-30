@@ -382,7 +382,7 @@ if authentication_status:
     elif options=="Mapa de Calor":
         
         df1 = pd.DataFrame(get_all_periods())
-        df1['Fecha'] = pd.to_datetime(df['Fecha'], format='%Y-%m-%d', errors='coerce')
+        df1['Fecha'] = pd.to_datetime(df1['Fecha'], format='%Y-%m-%d', errors='coerce')
         df1['Año'] = df1['Fecha'].apply(lambda x: x.year)
         df1['MesN'] = df1['Fecha'].apply(lambda x: x.month)
         df1['Mes'] = df1['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
