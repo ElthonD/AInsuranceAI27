@@ -22,3 +22,21 @@ def insert_user(username, name, password):
     return db.put({"key": username, "name": name, "password": password})
 
 insert_user("admin", "Elthon Rivas", "Qan40646")
+
+def fetch_all_users():
+    """Devuelve un diccionario de todos los usuarios."""
+    res = db.fetch()
+    return res.items
+
+def get_user(username):
+    """Si no se encuentra, la función devolverá None"""
+    return db.get(username)
+
+def update_user(username, updates):
+    """Si el elemento se actualiza, devuelve None. De lo contrario, se plantea una excepción."""
+    return db.update(updates, username)
+
+
+def delete_user(username):
+    """Siempre devuelve None, incluso si la clave no existe"""
+    return db.delete(username)
