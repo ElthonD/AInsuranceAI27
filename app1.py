@@ -49,7 +49,7 @@ with col5:
     name, authentication_status, username = authenticator.login("Ingresar", "main")
     
     if authentication_status == False:
-        st.error("Usuario/Contraseña is incorrect")
+        st.error("Usuario/Contraseña is incorrecta")
         
     if authentication_status == None:
         st.warning("Por favor, ingresa usuario y contraseña")
