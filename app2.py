@@ -37,11 +37,10 @@ hashed_passwords = [user["password"] for user in users]
 authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "ai27_ainsurance", "abcdef", cookie_expiry_days=30)
 
 # --- DATABASE INTERFACE ---
-def get_all_periods():
-    items = ainsurance_db.fetch_all_ainsurance()
-    periods = [item["Fecha"] for item in items]
-    return periods
-
+#def get_all_periods():
+    #items = ainsurance_db.fetch_all_ainsurance()
+    #periods = [item["Fecha"] for item in items]
+    #return periods
 
 col4, col5, col6 = st.columns([1,1,1])
 
