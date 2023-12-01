@@ -14,7 +14,7 @@ deta = Deta(DETA_KEY)
 
 # Esto es como crear/conectar una base de datos
 
-db = deta.Base("users_db")
+db = deta.Base("usuarios_db")
 
 def insert_user(username, name, password):
 
