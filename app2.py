@@ -37,10 +37,11 @@ hashed_passwords = [user["password"] for user in users]
 authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "ai27_ainsurance", "abcdef", cookie_expiry_days=30)
 
 # --- DATABASE INTERFACE ---
-#def get_all_periods():
-    #items = ainsurance_db.fetch_all_ainsurance()
-    #periods = [item["Fecha"] for item in items]
-    #return periods
+def get_all_periods():
+    items = ainsurance_db.fetch_all_ainsurance()
+    periods = [item["Fecha"] for item in items]
+    return periods
+
 
 col4, col5, col6 = st.columns([1,1,1])
 
@@ -107,7 +108,7 @@ if authentication_status:
             with col19:    
                 estatus = st.selectbox("Estatus:", estatus, key="estatus1")
         
-            coment = st.text_area("Observaciones:", placeholder="Escriba Observaciones ...", key= "coments")
+            coment = st.text_area("Observaciones:", placeholder="Escriba Observaciones ...", key= "coments1")
             "---"
             col19, col20, col21, col22, col23 = st.columns([1,1,1,1,1])
             with col21:
