@@ -119,11 +119,13 @@ if authentication_status:
 
     elif options=="Data Visualización":
         
-        df = pd.DataFrame(get_all_periods())
-        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%Y-%m-%d', errors='coerce')
-        df['Año'] = df['Fecha'].apply(lambda x: x.year)
-        df['MesN'] = df['Fecha'].apply(lambda x: x.month)
-        df['Mes'] = df['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
+        print(get_all_periods())
+
+        #df = pd.DataFrame(get_all_periods())
+        #df['Fecha'] = pd.to_datetime(df['Fecha'], format='%Y-%m-%d', errors='coerce')
+        #df['Año'] = df['Fecha'].apply(lambda x: x.year)
+        #df['MesN'] = df['Fecha'].apply(lambda x: x.month)
+        #df['Mes'] = df['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
 
         st.markdown("<h2 style='text-align: left;'>Visualización de Datos del Histórico de Eventos</h2>", unsafe_allow_html=True)
         st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.values[0]} {df.Año.values[0].astype(int)} a {df.Mes.values[-1]} {df.Año.values[-1].astype(int)} .")
