@@ -36,13 +36,6 @@ hashed_passwords = [user["password"] for user in users]
 
 authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "ai27_ainsurance", "abcdef", cookie_expiry_days=30)
 
-# --- DATABASE INTERFACE ---
-def get_all_periods():
-    items = ainsurance_db.fetch_all_ainsurance()
-    periods = [item["Fecha"] for item in items]
-    return periods
-
-
 col4, col5, col6 = st.columns([1,1,1])
 
 with col5:
@@ -63,7 +56,7 @@ if authentication_status:
     options = st.sidebar.selectbox("Seleccionar Opciones:",("Registro de Eventos","Data Visualización","Mapa de Calor"))
     # Realizar auditorías seleccionadas
 
-    if options=="Registro de Eventos":
+    if options=="Registro de Eventos":    
 
         st.markdown("<h2 style='text-align: left;'>Registro de Eventos AInsurance</h2>", unsafe_allow_html=True)
         st.write(f"Registrar eventos de los servicios (Bitácoras) que fueron detonados como emergencia por los clientes AInsurance de AI27.")
@@ -118,9 +111,12 @@ if authentication_status:
                     st.success("¡Guardado!")
 
     elif options=="Data Visualización":
-
-        pass
         
+        # --- DATABASE INTERFACE ---
+        def get_all_periods():
+            items = ainsurance_db.fetch_all_ainsurance()
+            periods = [item["Fecha"] for item in items]
+            return periods
 
     elif options=="Mapa de Calor":
         
