@@ -82,31 +82,33 @@ if authentication_status:
             with col7:
                 fecha = st.text_input("Fecha:", placeholder="Fecha del Evento", key="fecha1")
             with col8:
-                nBitacora = st.text_input("Bitácora:", placeholder="Nro Bitácora", key="bitacora1")
+                ndocumentador = st.text_input("Nombre Monitorista:", name, disabled=True, key="name1")
             with col9:
+                nBitacora = st.text_input("Bitácora:", placeholder="Nro Bitácora", key="bitacora1")
+            with col10:
                 sCliente = st.selectbox("Cliente:", cliente, placeholder="Nombre Cliente", key="cliente1")
-            with col10: 
-                mEntrada = st.selectbox("Motivo de Entrada:", notificacion, placeholder="Tipo de Notificación", key="notificacion1")
             col11, col12, col13, col14 = st.columns([1,1,1,1])   
             with col11: 
-                marca = st.selectbox("Marca:", marcatracto, placeholder="Marca del Tracto", key="marca1")
+                mEntrada = st.selectbox("Motivo de Entrada:", notificacion, placeholder="Tipo de Notificación", key="notificacion1")  
             with col12: 
-                modelo = st.text_input("Modelo:", placeholder="Año del Tracto", key="ao1")
+                marca = st.selectbox("Marca:", marcatracto, placeholder="Marca del Tracto", key="marca1")
             with col13: 
+                modelo = st.text_input("Modelo:", placeholder="Año del Tracto", key="ao1")
+            with col14: 
                 placas = st.text_input("Placas:", placeholder="Placas del Tracto", key="placas1")
-            with col14:
+            col15, col16, col17, col18, col19 = st.columns([1,1,1,1,1])
+            with col15:
                 economico = st.text_input("Económico:", placeholder="Número Económico", key="economico1")
-            col15, col16, col17, col18 = st.columns([1,1,1,1])
-            with col15:    
-                latitud = st.text_input("Latitud:", placeholder="Latitud", key="latitud1")
             with col16:    
+                latitud = st.text_input("Latitud:", placeholder="Latitud", key="latitud1")
+            with col17:    
                 longitud = st.text_input("Longitud:", placeholder="Longitud", key="longitud1")
-            with col17:
+            with col18:
                 estado = st.selectbox("Estado:", estado, key="estado1")
-            with col18:    
+            with col19:    
                 estatus = st.selectbox("Estatus:", estatus, key="estatus1")
         
-            coment = st.text_area("Observaciones:", placeholder="Escriba Observaciones ...", key= "coments")
+            coment = st.text_area("Observaciones:", placeholder="Escriba Observaciones ...", key= "coments1")
             "---"
             col19, col20, col21, col22, col23 = st.columns([1,1,1,1,1])
             with col21:
