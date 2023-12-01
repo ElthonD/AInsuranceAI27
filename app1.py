@@ -118,7 +118,7 @@ if authentication_status:
             with col21:
                 submitted = st.form_submit_button("Guardar")
                 if submitted:
-                    ainsurance_db.insert_register_ainsurance(fecha, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, estatus, coment)
+                    ainsurance_db.insert_register_ainsurance(fecha, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment)
                     st.success("¡Guardado!")
 
     elif options=="Data Visualización":
