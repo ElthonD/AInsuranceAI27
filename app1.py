@@ -75,10 +75,10 @@ if authentication_status:
         notificacion = ["Llamada del Cliente", "Whatsapp del Cliente", "Alerta por Telegram", "Bitácora Centro Monitoreo", "Correo del Cliente"]
         marcatracto = ["KENWORTH", "INTERNACIONAL", "FREIGHTLINER", "VOLVO", "MERCEDES"]
         estado = ["Ciudad de México", "México", "Querétaro", "Puebla", "Guanajuato", "Veracruz", "Chiapas", "Jalisco", "Durango", "Hidalgo", "San Luis Potosí", "Nuevo León", "Chihuahua","Campeche", "Sonora","Zacatecas", "Sinaloa", "Tamaulipas", "Oaxaca", "Tabasco", "Michoacán", "Colima", "Guerrero", "Tlaxcala", "Morelos", "Baja California", "Quintana Roo", "Yucatán", "Aguascalientes", "Coahuila", "Nayarit"]
-        estatus = ["RECUPERADO", "CONSUMADO"]
+        estatus = ["RECUPERADO", "CONSUMADO", "N/A"]
 
         with st.form("entry_form", clear_on_submit= True):
-            col7, col8, col9, col10 = st.columns([1,1,1,1])
+            col7, col8, col9, col10, col11 = st.columns([1,1,1,1,1])
             with col7:
                 fecha = st.text_input("Fecha:", placeholder="Fecha del Evento", key="fecha1")
             with col8:
@@ -87,27 +87,31 @@ if authentication_status:
                 nBitacora = st.text_input("Bitácora:", placeholder="Nro Bitácora", key="bitacora1")
             with col10:
                 sCliente = st.selectbox("Cliente:", cliente, placeholder="Nombre Cliente", key="cliente1")
-            col11, col12, col13, col14 = st.columns([1,1,1,1])   
             with col11: 
-                mEntrada = st.selectbox("Motivo de Entrada:", notificacion, placeholder="Tipo de Notificación", key="notificacion1")  
+                mEntrada = st.selectbox("Motivo de Entrada:", notificacion, placeholder="Tipo de Notificación", key="notificacion1")
+            col12, col13, col14, col15, col16 = st.columns([1,1,1,1,1])   
             with col12: 
                 marca = st.selectbox("Marca:", marcatracto, placeholder="Marca del Tracto", key="marca1")
             with col13: 
                 modelo = st.text_input("Modelo:", placeholder="Año del Tracto", key="ao1")
             with col14: 
                 placas = st.text_input("Placas:", placeholder="Placas del Tracto", key="placas1")
-            col15, col16, col17, col18, col19 = st.columns([1,1,1,1,1])
             with col15:
                 economico = st.text_input("Económico:", placeholder="Número Económico", key="economico1")
             with col16:    
                 latitud = st.text_input("Latitud:", placeholder="Latitud", key="latitud1")
+            col17, col18, col19, col20, col21, = st.columns([1,1,1,1,1])
             with col17:    
                 longitud = st.text_input("Longitud:", placeholder="Longitud", key="longitud1")
             with col18:
                 estado = st.selectbox("Estado:", estado, key="estado1")
             with col19:    
+                municipio = st.text_input("Municipio:", estatus, key="municipio")
+            with col20:    
+                tramo = st.selectbox("Tramo:", estatus, key="tramo1")
+            with col21:    
                 estatus = st.selectbox("Estatus:", estatus, key="estatus1")
-        
+
             coment = st.text_area("Observaciones:", placeholder="Escriba Observaciones ...", key= "coments1")
             "---"
             col19, col20, col21, col22, col23 = st.columns([1,1,1,1,1])
