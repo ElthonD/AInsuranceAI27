@@ -128,8 +128,9 @@ if authentication_status:
         #df['Mes'] = df['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
 
         st.markdown("<h2 style='text-align: left;'>Visualización de Datos del Histórico de Eventos</h2>", unsafe_allow_html=True)
-        st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.values[0]} {df.Año.values[0].astype(int)} a {df.Mes.values[-1]} {df.Año.values[-1].astype(int)} .")
+        #st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.values[0]} {df.Año.values[0].astype(int)} a {df.Mes.values[-1]} {df.Año.values[-1].astype(int)} .")
 
+        """
         c1, c2, c3 = st.columns(3)
 
         with c1:
@@ -382,7 +383,7 @@ if authentication_status:
             st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
             st.set_option('deprecation.showPyplotGlobalUse', False)
             st.pyplot()
-        
+        """
     elif options=="Mapa de Calor":
         
         df1 = pd.DataFrame(get_all_periods())
