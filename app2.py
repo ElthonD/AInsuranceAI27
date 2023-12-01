@@ -11,7 +11,7 @@ import seaborn as sns; sns.set_theme()
 import plotly.graph_objects as go
 import plotly.express as px
 import matplotlib.pyplot as plt
-import database_users as usuarios_db
+import database_users as user_db
 import database_ainsurance as ainsurance_db
 
 # Title of the main page
@@ -27,7 +27,7 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # --- USER AUTHENTICATION ---
-users = usuarios_db.fetch_all_users()
+users = user_db.fetch_all_users()
 
 usernames = [user["key"] for user in users]
 names = [user["name"] for user in users]
