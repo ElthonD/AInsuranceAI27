@@ -75,7 +75,7 @@ if authentication_status:
         notificacion = ["Llamada del Cliente", "Whatsapp del Cliente", "Alerta por Telegram", "Bitácora Centro Monitoreo", "Correo del Cliente"]
         marcatracto = ["KENWORTH", "INTERNACIONAL", "FREIGHTLINER", "VOLVO", "MERCEDES"]
         estado = ["Ciudad de México", "México", "Querétaro", "Puebla", "Guanajuato", "Veracruz", "Chiapas", "Jalisco", "Durango", "Hidalgo", "San Luis Potosí", "Nuevo León", "Chihuahua","Campeche", "Sonora","Zacatecas", "Sinaloa", "Tamaulipas", "Oaxaca", "Tabasco", "Michoacán", "Colima", "Guerrero", "Tlaxcala", "Morelos", "Baja California", "Quintana Roo", "Yucatán", "Aguascalientes", "Coahuila", "Nayarit"]
-        estatus = ["RECUPERADO", "CONSUMADO", "N/A"]
+        estatus = ["RECUPERADO", "CONSUMADO", "FRUSTADO", "PENDIENTE","NO APLICA"]
 
         with st.form("entry_form", clear_on_submit= True):
             col7, col8, col9, col10, col11 = st.columns([1,1,1,1,1])

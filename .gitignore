@@ -124,6 +124,7 @@ celerybeat.pid
 *.sage.py
 
 upload_to_database.py
+upload_to_db_ainsurance.py
 
 # Environments
 .env
