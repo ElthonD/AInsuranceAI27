@@ -127,7 +127,8 @@ if authentication_status:
     elif options=="Data Visualización":
         
         dict_df = obtener_df()
-        df2 = pd.DataFrame([[key, dict_df[key]] for key in dict_df.keys()], columns=['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Económico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones'])
+        df2 = pd.DataFrame(obtener_df())
+        #df2 = pd.DataFrame([[key, dict_df[key]] for key in dict_df.keys()], columns=['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Económico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones'])
         st.dataframe(df2)
 
 
