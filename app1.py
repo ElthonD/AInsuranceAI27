@@ -123,6 +123,7 @@ if authentication_status:
     elif options=="Data Visualización":
         
         df = pd.DataFrame(obtener_df())
+        st.dataframe(df)
         df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%Y-%m-%d', errors='coerce')
         df['Año'] = df['Fecha'].apply(lambda x: x.year)
@@ -132,7 +133,7 @@ if authentication_status:
 
         st.markdown("<h2 style='text-align: left;'>Visualización de Datos del Histórico de Eventos</h2>", unsafe_allow_html=True)
         st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.values[0]} {df.Año.values[0].astype(int)} a {df.Mes.values[-1]} {df.Año.values[-1].astype(int)} .")
-        st.dataframe(df)
+        #st.dataframe(df)
 
         """
         c1, c2, c3 = st.columns(3)
