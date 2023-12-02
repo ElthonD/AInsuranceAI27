@@ -37,10 +37,6 @@ hashed_passwords = [user["password"] for user in users]
 authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "ai27_ainsurance", "abcdef", cookie_expiry_days=30)
 
 # --- DATABASE INTERFACE ---
-def get_all_periods():
-    items = ainsurance_db.fetch_all_ainsurance()
-    periods = [item["key"] for item in items]
-    return periods
 
 def obtener_df():
     data = ainsurance_db.fetch_all_ainsurance()
@@ -126,21 +122,16 @@ if authentication_status:
 
     elif options=="Data Visualización":
         
-        dict_df = obtener_df()
-        df2 = pd.DataFrame(obtener_df())
-        df2 = df2[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
-        #df2 = pd.DataFrame([[key, dict_df[key]] for key in dict_df.keys()], columns=['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Económico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones'])
-        st.dataframe(df2)
-
-
-        #df = pd.DataFrame(get_all_periods())
-        #df['Fecha'] = pd.to_datetime(df['Fecha'], format='%Y-%m-%d', errors='coerce')
-        #df['Año'] = df['Fecha'].apply(lambda x: x.year)
-        #df['MesN'] = df['Fecha'].apply(lambda x: x.month)
-        #df['Mes'] = df['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
+        df = pd.DataFrame(obtener_df())
+        df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
+        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%Y-%m-%d', errors='coerce')
+        df['Año'] = df['Fecha'].apply(lambda x: x.year)
+        df['MesN'] = df['Fecha'].apply(lambda x: x.month)
+        df['Mes'] = df['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
 
         st.markdown("<h2 style='text-align: left;'>Visualización de Datos del Histórico de Eventos</h2>", unsafe_allow_html=True)
-        #st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.values[0]} {df.Año.values[0].astype(int)} a {df.Mes.values[-1]} {df.Año.values[-1].astype(int)} .")
+        st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.values[0]} {df.Año.values[0].astype(int)} a {df.Mes.values[-1]} {df.Año.values[-1].astype(int)} .")
+        st.dataframe(df)
 
         """
         c1, c2, c3 = st.columns(3)
