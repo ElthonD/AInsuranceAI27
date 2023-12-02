@@ -42,7 +42,10 @@ def get_all_periods():
     periods = [item["key"] for item in items]
     return periods
 
-
+def obtener_df():
+    data = ainsurance_db.fetch_all_ainsurance()
+    return data
+    
 col4, col5, col6 = st.columns([1,1,1])
 
 with col5:
@@ -123,7 +126,7 @@ if authentication_status:
 
     elif options=="Data Visualización":
         
-        print(get_all_periods())
+        print(obtener_df())
 
         #df = pd.DataFrame(get_all_periods())
         #df['Fecha'] = pd.to_datetime(df['Fecha'], format='%Y-%m-%d', errors='coerce')
