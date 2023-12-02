@@ -39,7 +39,7 @@ authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "ai27_ai
 # --- DATABASE INTERFACE ---
 def get_all_periods():
     items = ainsurance_db.fetch_all_ainsurance()
-    periods = [item["Fecha"] for item in items]
+    periods = [item["key"] for item in items]
     return periods
 
 
