@@ -106,9 +106,9 @@ if authentication_status:
             with col18:
                 estado = st.selectbox("Estado:", estado, key="estado1")
             with col19:    
-                municipio = st.text_input("Municipio:", estatus, key="municipio")
+                municipio = st.text_input("Municipio:", placeholder="Municipio", key="municipio")
             with col20:    
-                tramo = st.selectbox("Tramo:", estatus, key="tramo1")
+                tramo = st.text_input("Tramo:", placeholder="Tramo Carretero", key="tramo1")
             with col21:    
                 estatus = st.selectbox("Estatus:", estatus, key="estatus1")
 
