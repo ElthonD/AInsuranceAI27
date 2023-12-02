@@ -134,6 +134,7 @@ if authentication_status:
         st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.values[0]} {df.Año.values[0].astype(int)} a {df.Mes.values[-1]} {df.Año.values[-1].astype(int)} .")
         st.dataframe(df)
 
+        """
         c1, c2, c3 = st.columns(3)
 
         with c1:
@@ -187,7 +188,7 @@ if authentication_status:
         col3.metric("Total Consumados", f"{total_consumados}")
 
         # Sankey
-        """
+       
         def genSankey(df,cat_cols=[],value_cols='', title='Sankey Diagram'):
             # maximum of 6 value cols -> 6 colors
             colorPalette = ['#4B8BBE','#306998','#FFE873','#FFD43B','#646464']
