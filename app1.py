@@ -435,7 +435,7 @@ if authentication_status:
             #Recorrer marco de datos y agregar cada punto de datos al grupo de marcadores
             Latitudes2 = df['Latitud'].to_list()
             Longitudes2 = df['Longitud'].to_list()
-            Popups2 = df['Fecha y Hora'].to_list()
+            Popups2 = df['Fecha'].to_list()
             Popups3 = df['Estatus'].to_list()
             Popups4 = df['Estado'].to_list()
             Popups5 = df['Municipio'].to_list()
