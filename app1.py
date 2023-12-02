@@ -178,7 +178,7 @@ if authentication_status:
 
         # Métricas
 
-        total_eventos = df_selected_mes['Bitácora'].count(axis=1)
+        total_eventos = df_selected_mes['Bitácora'].count()
         total_recuperados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'RECUPERADO'].count()
         total_consumados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'CONSUMADO'].count()
         c4, c5, c6 = st.columns(3)
