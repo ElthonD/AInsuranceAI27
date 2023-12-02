@@ -125,7 +125,7 @@ if authentication_status:
         df = pd.DataFrame(obtener_df())
         st.dataframe(df)
         df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
-        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%Y-%m-%d', errors='coerce')
+        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')
         df['Año'] = df['Fecha'].apply(lambda x: x.year)
         df['MesN'] = df['Fecha'].apply(lambda x: x.month)
         df['Mes'] = df['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
