@@ -129,11 +129,11 @@ if authentication_status:
         df['MesN'] = df['Fecha'].apply(lambda x: x.month)
         df['Mes'] = df['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
 
+
         st.markdown("<h2 style='text-align: left;'>Visualización de Datos del Histórico de Eventos</h2>", unsafe_allow_html=True)
         st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.values[0]} {df.Año.values[0].astype(int)} a {df.Mes.values[-1]} {df.Año.values[-1].astype(int)} .")
         st.dataframe(df)
 
-        """
         c1, c2, c3 = st.columns(3)
 
         with c1:
@@ -187,7 +187,7 @@ if authentication_status:
         col3.metric("Total Consumados", f"{total_consumados}")
 
         # Sankey
-
+        """
         def genSankey(df,cat_cols=[],value_cols='', title='Sankey Diagram'):
             # maximum of 6 value cols -> 6 colors
             colorPalette = ['#4B8BBE','#306998','#FFE873','#FFD43B','#646464']
