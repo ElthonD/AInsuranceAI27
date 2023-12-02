@@ -123,7 +123,8 @@ if authentication_status:
     elif options=="Data Visualización":
         
         df = pd.DataFrame(obtener_df())
-        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')
+        df['Fecha'].strftime('%Y-%m-%d')
+        #df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')
         st.dataframe(df)
         print(df.dtypes)
         df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
