@@ -172,10 +172,6 @@ if authentication_status:
                 selected_mes = container3.multiselect('Mes(es):', sorted_unique_mes, key="mes2") 
                 df_selected_mes = df_selected_ao[df_selected_ao['Mes'].isin(selected_mes)].astype(str)
 
-        # Dataframe
-        df_selected_mes = df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
-        st.dataframe(df_selected_mes)
-
         # Métricas
 
         total_eventos = len(df_selected_mes['Bitácora'])
@@ -203,6 +199,11 @@ if authentication_status:
             st.metric("Pendientes", f"{total_pendientes1}")
         with c9:
             st.metric("No Aplica", f"{total_noaplica1}")
+
+        # Dataframe
+        df_selected_mes = df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
+        st.dataframe(df_selected_mes)
+        
         """
 
         # Sankey
