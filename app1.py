@@ -203,7 +203,7 @@ if authentication_status:
             st.metric("Pendientes", f"{total_pendientes1}")
         with c9:
             st.metric("No Aplica", f"{total_noaplica1}")
-        """
+        
 
         # Sankey
        
@@ -279,6 +279,7 @@ if authentication_status:
         fig = genSankey(dSankey,cat_cols=['Estado','Tramo','Estatus'],value_cols='Estatus',title='Flujo de Eventos AInsurance')
         st.plotly_chart(fig)
 
+        """
         st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
 
         def df_grafico(df):
