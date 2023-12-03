@@ -176,16 +176,20 @@ if authentication_status:
         df_selected_mes = df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         st.dataframe(df_selected_mes)
 
-        """
         # Métricas
 
         total_eventos = df_selected_mes['Bitácora'].count()
         total_recuperados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'RECUPERADO'].count()
         total_consumados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'CONSUMADO'].count()
         c4, c5, c6 = st.columns(3)
-        col1.metric("Total Eventos", f"{total_eventos}")
-        col2.metric("Total Recuperados", f"{total_recuperados}")
-        col3.metric("Total Consumados", f"{total_consumados}")
+        with c4:
+            st.metric("Total Eventos", f"{total_eventos}")
+        with c5:
+            st.metric("Total Recuperados", f"{total_recuperados}")
+        with c6:
+            st.metric("Total Consumados", f"{total_consumados}")
+
+        """
 
         # Sankey
        
