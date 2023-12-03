@@ -14,7 +14,7 @@ deta = Deta(DETA_KEY)
 
 # Esto es como crear/conectar una base de datos
 
-db_ainsurance = deta.Base("ainsurance_db")          
+db_ainsurance = deta.Base("db_ainsurance")          
 
 def insert_register_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment):
 
