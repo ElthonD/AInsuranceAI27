@@ -310,9 +310,9 @@ if authentication_status:
             df5 = df5.reset_index()
 
             # Preparar Dataframe Final
-            df5['MesN'] = df5['Fecha y Hora'].apply(lambda x: x.month)
+            df5['MesN'] = df5['Fecha'].apply(lambda x: x.month)
             df5['Mes'] = df5['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
-            df5['Año'] = df5['Fecha y Hora'].dt.year
+            df5['Año'] = df5['Fecha'].dt.year
             df5 = df5.fillna(0)
             df5['Total'] = (df5['RECUPERADO'] + df5['CONSUMADO'])
             df5['% Recuperado'] = round((df5['RECUPERADO'] / df5['Total']),2) * 100
