@@ -360,7 +360,7 @@ if authentication_status:
                         text= [f'Recuperados(s): {x:.0f}%' for x in df['Recuperados (%)']])
     
             # Create a layout with interactive elements and two yaxes
-            layout = go.Layout(height=500, width=700, font=dict(size=7), hovermode="x unified",
+            layout = go.Layout(height=700, width=700, font=dict(size=7), hovermode="x unified",
                    #title='Robos',
                    plot_bgcolor="#FFF",
                    xaxis=dict(showgrid=False, title='Fecha',
