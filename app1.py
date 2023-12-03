@@ -128,7 +128,7 @@ if authentication_status:
         #df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y').dt.date
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y')
         print(df.dtypes)
-        #st.dataframe(df)
+        st.dataframe(df)
         df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')
         df['Año'] = df['Fecha'].apply(lambda x: x.year)
