@@ -138,7 +138,7 @@ if authentication_status:
 
         st.markdown("<h2 style='text-align: left;'>Visualización de Datos del Histórico de Eventos</h2>", unsafe_allow_html=True)
         #st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.values[0]} {df.Año.values[0].astype(int)} a {df.Mes.values[-1]} {df.Año.values[-1].astype(int)} .")
-        st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.min()} {df.Año.max().astype(int)} a {df.Mes.min()} {df.Año.max().astype(int)} .")
+        st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df.Mes.min()} {df.Año.min().astype(int)} a {df.Mes.max()} {df.Año.max().astype(int)} .")
 
         #st.dataframe(df)df.index.min()
 
