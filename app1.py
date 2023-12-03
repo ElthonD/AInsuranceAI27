@@ -498,4 +498,43 @@ if authentication_status:
             #Mostrar Mapa
             folium_static(MapaMexico, width=1370)
         
-        mapa = map_coropleta_fol(df1)
+        st.markdown("<h5 style='text-align: left;'>Seleccionar datos</h5>", unsafe_allow_html=True)
+        c10, c11, c12 = st.columns(3)
+
+        with c10:
+            container4 = st.container()
+            allC4 = st.checkbox("Seleccionar Todos", key="chk3")
+            if allC4:
+                sorted_unique_cliente1 = sorted(df1['Cliente'].unique())
+                selected_cliente2 = container4.multiselect('Cliente(es):', sorted_unique_cliente1, sorted_unique_cliente1, key="cliente3")
+                df_selected_cliente2 = df1[df1['Cliente'].isin(selected_cliente2)].astype(str)
+            else:
+                sorted_unique_cliente1 = sorted(df1['Cliente'].unique())
+                selected_cliente2 = container4.multiselect('Cliente(es)', sorted_unique_cliente1, key="cliente4")
+                df_selected_cliente2 = df1[df1['Cliente'].isin(selected_cliente2)].astype(str)
+            
+        with c11:
+            container5 = st.container()
+            allC5 = st.checkbox("Seleccionar Todos", key="chk4")
+            if allC5:
+                sorted_unique_ao2 = sorted(df_selected_cliente2['Año'].unique())
+                selected_ao2 = container5.multiselect('Año(s):', sorted_unique_ao2, sorted_unique_ao2, key="año3") 
+                df_selected_ao2 = df_selected_cliente2[df_selected_cliente2['Año'].isin(selected_ao2)].astype(str)
+            else:
+                sorted_unique_ao2 = sorted(df_selected_cliente2['Año'].unique())
+                selected_ao2 = container5.multiselect('Año(s):', sorted_unique_ao2, key="año4") 
+                df_selected_ao2 = df_selected_cliente2[df_selected_cliente2['Año'].isin(selected_ao2)].astype(str)
+        
+        with c12:
+            container6 = st.container()
+            allC6 = st.checkbox("Seleccionar Todos", key="chk5")
+            if allC6:
+                sorted_unique_mes2 = sorted(df_selected_ao2['Mes'].unique())
+                selected_mes2 = container6.multiselect('Mes(es):', sorted_unique_mes2, sorted_unique_mes2, key="mes2") 
+                df_selected_mes2 = df_selected_ao2[df_selected_ao2['Mes'].isin(selected_mes2)].astype(str)
+            else:
+                sorted_unique_mes2 = sorted(df_selected_ao2['Mes'].unique())
+                selected_mes2 = container6.multiselect('Mes(es):', sorted_unique_mes2, key="mes3") 
+                df_selected_mes2 = df_selected_ao2[df_selected_ao2['Mes'].isin(selected_mes2)].astype(str)
+
+        mapa = map_coropleta_fol(df_selected_mes2)
