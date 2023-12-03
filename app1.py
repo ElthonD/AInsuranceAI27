@@ -190,7 +190,7 @@ if authentication_status:
         total_noaplica = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'NO APLICA']
         total_noaplica1 = len(total_noaplica)
         
-        c4, c5, c6, c7, c8, c9 = st.columns(3)
+        c4, c5, c6, c7, c8, c9 = st.columns(6)
         with c4:
             st.metric("Eventos", f"{total_eventos}")
         with c5:
