@@ -125,7 +125,8 @@ if authentication_status:
         df = pd.DataFrame(obtener_df(), dtype=None)
         #print(df.dtypes)
         #st.dataframe(df)
-        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y').dt.date
+        #df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y').dt.date
+        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y')
         print(df.dtypes)
         #st.dataframe(df)
         df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
