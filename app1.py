@@ -391,22 +391,22 @@ if authentication_status:
             fig.update_layout(barmode='stack')
             st.plotly_chart(fig)
 
-        c1, c2 = st.columns((1,1))
-        with c1:
-            st.markdown("<h5 style='text-align: left;'>Gráfico Mensual de Robos</h5>", unsafe_allow_html=True)
-            d1 = df_grafico(df_selected_mes)
-            #st.write(d1)
-            g1 = g_recuperacion(d1)
-        with c2:
-            st.markdown("<h5 style='text-align: left;'>Segmentación de Intentos de Robos</h5>", unsafe_allow_html=True)
-            df_pie = df_selected_mes.groupby(['Estatus']).size()
-            df_pie1 = pd.DataFrame(df_pie)
-            df_pie1.reset_index(drop = False, inplace = True)
-            df_pie1 = df_pie1.rename(columns={'Estatus':'Tipo de Evento', 0:'Total'})
-            plt.figure(figsize = (2,2))
-            st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
-            st.set_option('deprecation.showPyplotGlobalUse', False)
-            st.pyplot()
+        #c1, c2 = st.columns((1,1))
+        #with c1:
+        st.markdown("<h5 style='text-align: left;'>Gráfico Mensual de Robos</h5>", unsafe_allow_html=True)
+        d1 = df_grafico(df_selected_mes)
+        #st.write(d1)
+        g1 = g_recuperacion(d1)
+        #with c2:
+        st.markdown("<h5 style='text-align: left;'>Segmentación de Intentos de Robos</h5>", unsafe_allow_html=True)
+        df_pie = df_selected_mes.groupby(['Estatus']).size()
+        df_pie1 = pd.DataFrame(df_pie)
+        df_pie1.reset_index(drop = False, inplace = True)
+        df_pie1 = df_pie1.rename(columns={'Estatus':'Tipo de Evento', 0:'Total'})
+        plt.figure(figsize = (2,2))
+        st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
+        st.set_option('deprecation.showPyplotGlobalUse', False)
+        st.pyplot()
       
     elif options=="Mapa de Calor":
         
