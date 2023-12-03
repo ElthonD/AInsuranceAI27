@@ -178,25 +178,31 @@ if authentication_status:
 
         # Métricas
 
-        total_eventos = df_selected_mes['Bitácora'].count()
-
-        #total_recuperados = df_selected_mes.groupby(["Estatus"] == 'RECUPERADO').value_counts()
-        #total_consumados = df_selected_mes.groupby(["Estatus"] == 'CONSUMADO').value_counts()
-
+        total_eventos = len(df_selected_mes['Bitácora'])
         total_recuperados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'RECUPERADO']
         total_recuperados1 = len(total_recuperados)
-        print(total_recuperados1)
         total_consumados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'CONSUMADO']
         total_consumados1 = len(total_consumados)
-        print(total_consumados1)
-        c4, c5, c6 = st.columns(3)
+        total_frustrados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'FRUSTRADO']
+        total_frustrados1 = len(total_frustrados)
+        total_pendientes = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'PENDIENTE']
+        total_pendientes1 = len(total_pendientes)
+        total_noaplica = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'NO APLICA']
+        total_noaplica1 = len(total_noaplica)
+        
+        c4, c5, c6, c7, c8, c9 = st.columns(3)
         with c4:
-            st.metric("Total Eventos", f"{total_eventos}")
+            st.metric("Eventos", f"{total_eventos}")
         with c5:
-            st.metric("Total Recuperados", f"{total_recuperados1}")
+            st.metric("Recuperados", f"{total_recuperados1}")
         with c6:
-            st.metric("Total Consumados", f"{total_consumados1}")
-
+            st.metric("Consumados", f"{total_consumados1}")
+        with c7:
+            st.metric("Frustrados", f"{total_frustrados1}")
+        with c8:
+            st.metric("Pendientes", f"{total_pendientes1}")
+        with c9:
+            st.metric("No Aplica", f"{total_noaplica1}")
         """
 
         # Sankey
