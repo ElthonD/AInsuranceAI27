@@ -426,7 +426,8 @@ if authentication_status:
         df1['MesN'] = df1['Fecha'].apply(lambda x: x.month)
         df1['Mes'] = df1['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
         st.markdown("<h2 style='text-align: left;'>Mapa de Eventos AInsurance</h2>", unsafe_allow_html=True)
-        st.write(f"Mapa de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df1.Mes.values[0]} {df1.Año.values[0].astype(int)} a {df1.Mes.values[-1]} {df1.Año.values[-1].astype(int)} .")
+        #st.write(f"Mapa de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df1.Mes.values[0]} {df1.Año.values[0].astype(int)} a {df1.Mes.values[-1]} {df1.Año.values[-1].astype(int)} .")
+        st.write(f"Mapa de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde ***{df.Mes.min()} {df.Año.min().astype(int)}*** a ***{df.Mes.max()} {df.Año.max().astype(int)}***.")
 
         def GenerarMapaBase(Centro=[20.5223, -99.8883], zoom=8):
             MapaBase = folium.Map(location=Centro, control_scale=True, zoom_start=zoom)
