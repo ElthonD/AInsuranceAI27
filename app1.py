@@ -274,7 +274,7 @@ if authentication_status:
         # Diagrama Sankey
         st.markdown("<h3 style='text-align: left;'>Flujo de Eventos</h3>", unsafe_allow_html=True)
 
-        dSankey = df_selected_mes.groupby(['Estado','Tramo','Estatus']).aggregate({'Estatus':'count'}).reset_index()
+        dSankey = df_selected_mes.groupby(['Estado','Tramo']).aggregate({'Estatus':'count'}).reset_index()
 
         fig = genSankey(dSankey,cat_cols=['Estado','Tramo','Estatus'],value_cols='Estatus',title='Flujo de Eventos AInsurance')
         st.plotly_chart(fig)
