@@ -124,7 +124,7 @@ if authentication_status:
         
         df = pd.DataFrame(obtener_df())
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y')
-        df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
+        #df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')
         df['Año'] = df['Fecha'].apply(lambda x: x.year)
         df['MesN'] = df['Fecha'].apply(lambda x: x.month)
@@ -132,6 +132,7 @@ if authentication_status:
 
         st.markdown("<h2 style='text-align: left;'>Visualización de Datos del Histórico de Eventos</h2>", unsafe_allow_html=True)
         st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde ***{df.Mes.min()} {df.Año.min().astype(int)}*** a ***{df.Mes.max()} {df.Año.max().astype(int)}***.")
+        df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         st.dataframe(df)
         """
         c1, c2, c3 = st.columns(3)
