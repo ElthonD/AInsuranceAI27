@@ -42,9 +42,9 @@ def obtener_df():
     data = ainsurance_db.fetch_all_ainsurance()
     return data
 
-def editar_df():
-    data = ainsurance_db.fetch_all_ainsurance()
-    return ainsurance_db.update_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates=data)
+def editar_df(df):
+    #data = ainsurance_db.fetch_all_ainsurance()
+    return ainsurance_db.update_ainsurance(updates=df)
 
 col4, col5, col6 = st.columns([1,1,1])
 
