@@ -393,7 +393,7 @@ if authentication_status:
 
         #c1, c2 = st.columns((1,1))
         #with c1:
-        st.markdown("<h5 style='text-align: left;'>Gráfico Mensual de Robos</h5>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: left;'>Gráfico Mensual de Intentos de Robos</h5>", unsafe_allow_html=True)
         d1 = df_grafico(df_selected_mes)
         #st.write(d1)
         g1 = g_recuperacion(d1)
