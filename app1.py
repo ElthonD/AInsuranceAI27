@@ -420,13 +420,13 @@ if authentication_status:
     elif options=="Mapa de Calor":
         
         df1 = pd.DataFrame(obtener_df())
-        df1 = df1[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
+        df1['Fecha'] = pd.to_datetime(df1['Fecha'], format='%d/%m/%Y')
+        #df1 = df1[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         df1['Fecha'] = pd.to_datetime(df1['Fecha'], format='%Y-%m-%d', errors='coerce')
         df1['Año'] = df1['Fecha'].apply(lambda x: x.year)
         df1['MesN'] = df1['Fecha'].apply(lambda x: x.month)
         df1['Mes'] = df1['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
         st.markdown("<h2 style='text-align: left;'>Mapa de Eventos AInsurance</h2>", unsafe_allow_html=True)
-        #st.write(f"Mapa de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde {df1.Mes.values[0]} {df1.Año.values[0].astype(int)} a {df1.Mes.values[-1]} {df1.Año.values[-1].astype(int)} .")
         st.write(f"Mapa de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde ***{df1.Mes.min()} {df1.Año.min().astype(int)}*** a ***{df1.Mes.max()} {df1.Año.max().astype(int)}***.")
 
         def GenerarMapaBase(Centro=[20.5223, -99.8883], zoom=8):
