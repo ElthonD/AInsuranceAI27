@@ -273,7 +273,7 @@ if authentication_status:
             return fig
 
         # Diagrama Sankey
-        st.markdown("<h3 style='text-align: left;'>Flujo de Eventos</h3>", unsafe_allow_html=True)
+        #st.markdown("<h3 style='text-align: left;'>Flujo de Eventos</h3>", unsafe_allow_html=True)
 
         dSankey = df_selected_mes.groupby(['Motivo de Entrada','Estado']).aggregate({'Estatus':'count'}).reset_index()
 
