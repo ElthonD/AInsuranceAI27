@@ -133,7 +133,7 @@ if authentication_status:
         st.markdown("<h2 style='text-align: left;'>Visualización de Datos del Histórico de Eventos</h2>", unsafe_allow_html=True)
         st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde ***{df.Mes.min()} {df.Año.min().astype(int)}*** a ***{df.Mes.max()} {df.Año.max().astype(int)}***.")
         
-        st.markdown("<h4 style='text-align: left;'>Seleccionar datos</h4>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: left;'>Seleccionar datos</h5>", unsafe_allow_html=True)
         c1, c2, c3 = st.columns(3)
 
         with c1:
@@ -173,7 +173,7 @@ if authentication_status:
                 df_selected_mes = df_selected_ao[df_selected_ao['Mes'].isin(selected_mes)].astype(str)
 
         # Dataframe
-        st.markdown("<h5 style='text-align: left;'>Histórico de eventos</h5>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align: left;'>Datos históricos de los eventos</h5>", unsafe_allow_html=True)
         df_selected_mes = df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         st.dataframe(df_selected_mes)
 
