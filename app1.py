@@ -173,6 +173,7 @@ if authentication_status:
                 df_selected_mes = df_selected_ao[df_selected_ao['Mes'].isin(selected_mes)].astype(str)
 
         # Dataframe
+        st.markdown("<h5 style='text-align: left;'>Histórico de eventos</h5>", unsafe_allow_html=True)
         df_selected_mes = df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         st.dataframe(df_selected_mes)
 
