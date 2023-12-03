@@ -184,10 +184,10 @@ if authentication_status:
         #total_consumados = df_selected_mes.groupby(["Estatus"] == 'CONSUMADO').value_counts()
 
         total_recuperados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'RECUPERADO']
-        total_recuperados1 = total_recuperados.value_counts()
+        total_recuperados1 = len(total_recuperados)
         print(total_recuperados1)
         total_consumados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'CONSUMADO']
-        total_consumados1 = total_consumados.value_counts()
+        total_consumados1 = len(total_consumados)
         print(total_consumados1)
         c4, c5, c6 = st.columns(3)
         with c4:
