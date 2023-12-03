@@ -373,6 +373,11 @@ if authentication_status:
                                                       label='1m',
                                                       step='month',
                                                       stepmode='backward'),
+                                                # 3 month
+                                                 dict(count=3,
+                                                      label='3m',
+                                                      step='month',
+                                                      stepmode='backward'),
                                                  # Entire scale
                                                  dict(step='all')
                                              ])
@@ -404,9 +409,12 @@ if authentication_status:
         df_pie1.reset_index(drop = False, inplace = True)
         df_pie1 = df_pie1.rename(columns={'Estatus':'Tipo de Evento', 0:'Total'})
         plt.figure(figsize = (10,10))
-        st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
+        fig = px.pie(df_pie1, values='Total', names='Tipo de Evento')
+        st.plotly_chart(fig, use_container_width=True)
+
+        #st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
+        #st.set_option('deprecation.showPyplotGlobalUse', False)
+        #st.pyplot()
       
     elif options=="Mapa de Calor":
         
