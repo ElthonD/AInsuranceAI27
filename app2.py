@@ -42,9 +42,14 @@ def obtener_df():
     data = ainsurance_db.fetch_all_ainsurance()
     return data
 
-def editar_df(df):
+def on_update(key):
+    data = ainsurance_db.fetch_all_ainsurance()
+    data1 = ainsurance_db.update(updates=data, key=key)
+    return data1
+
+def editar_df(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates):
     #data = ainsurance_db.fetch_all_ainsurance()
-    return ainsurance_db.update_ainsurance({"Fecha": fecha, "Nombre Monitorista": ndocumentador,"Bitácora": nBitacora, "Cliente": sCliente, "Motivo de Entrada": mEntrada, "Marca": marca, "Modelo": modelo,"Placas": placas, "Economico": economico, "Latitud": latitud, "Longitud": longitud, "Estado": estado,"Municipio": municipio,"Tramo": tramo, "Estatus": estatus, "Observaciones": coment}, updates=df)
+    return ainsurance_db.update_ainsurance(updates, fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment)
 
 col4, col5, col6 = st.columns([1,1,1])
 
@@ -126,17 +131,16 @@ if authentication_status:
 
     elif options=="Data Visualización":
         
-        df = pd.DataFrame(obtener_df())
-        df1 = pd.DataFrame(editar_df(df))
-        df1['Fecha'] = pd.to_datetime(df1['Fecha'], format='%d/%m/%Y')
+        df = pd.DataFrame(on_update())
+        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y')
         #df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
-        df1['Fecha'] = pd.to_datetime(df1['Fecha'], format='%d-%m-%Y', errors='coerce')
-        df1['Año'] = df1['Fecha'].apply(lambda x: x.year)
-        df1['MesN'] = df1['Fecha'].apply(lambda x: x.month)
-        df1['Mes'] = df1['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
+        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')
+        df['Año'] = df['Fecha'].apply(lambda x: x.year)
+        df['MesN'] = df['Fecha'].apply(lambda x: x.month)
+        df['Mes'] = df['MesN'].map({1:"Enero", 2:"Febrero", 3:"Marzo", 4:"Abril", 5:"Mayo", 6:"Junio", 7:"Julio", 8:"Agosto", 9:"Septiembre", 10:"Octubre", 11:"Noviembre", 12:"Diciembre"})
         
         st.markdown("<h2 style='text-align: left;'>Visualización de Datos del Histórico de Eventos</h2>", unsafe_allow_html=True)
-        st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde ***{df1.Mes.min()} {df1.Año.min().astype(int)}*** a ***{df1.Mes.max()} {df1.Año.max().astype(int)}***.")
+        st.write(f"Marco de datos del histórico de eventos que fueron detonados como emergencia por los clientes AInsurance de AI27 desde ***{df.Mes.min()} {df.Año.min().astype(int)}*** a ***{df.Mes.max()} {df.Año.max().astype(int)}***.")
         
         st.markdown("<h5 style='text-align: left;'>Seleccionar datos</h5>", unsafe_allow_html=True)
         c1, c2, c3 = st.columns(3)
