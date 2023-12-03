@@ -342,7 +342,7 @@ if authentication_status:
                         text= [f'Consumado(s): {x:.0f}' for x in df['CONSUMADO']]
                         )
     
-            sr_data3 = go.Bar(x = df['Fecha y Hora'],
+            sr_data3 = go.Bar(x = df['Fecha'],
                         y=df['Total'],
                         opacity=0.8,
                         yaxis = 'y1',
@@ -350,7 +350,7 @@ if authentication_status:
                         text= [f'Intentos: {x:.0f}' for x in df['Total']]
                         )
     
-            sr_data4 = go.Scatter(x = df['Fecha y Hora'],
+            sr_data4 = go.Scatter(x = df['Fecha'],
                         y=df['Recuperados (%)'],
                         line=go.scatter.Line(color='green', width = 0.6),
                         opacity=0.8,
