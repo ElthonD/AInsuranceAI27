@@ -279,7 +279,8 @@ if authentication_status:
         fig = genSankey(dSankey,cat_cols=['Motivo de Entrada','Estado','Estatus'],value_cols='Estatus',title='Flujo de Eventos AInsurance')
         st.plotly_chart(fig, use_container_width=True)
 
-        """
+        # Indicadores
+
         st.markdown("<h3 style='text-align: left;'>Indicadores</h3>", unsafe_allow_html=True)
 
         def df_grafico(df):
@@ -406,7 +407,7 @@ if authentication_status:
             st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
             st.set_option('deprecation.showPyplotGlobalUse', False)
             st.pyplot()
-        """
+      
     elif options=="Mapa de Calor":
         
         df1 = pd.DataFrame(obtener_df())
