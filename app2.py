@@ -42,7 +42,7 @@ def obtener_df():
     data = ainsurance_db.fetch_all_ainsurance()
     return data
 
-def on_update():
+def on_update(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment):
     data = ainsurance_db.fetch_all_ainsurance()
     data1 = ainsurance_db.update_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment,updates=data)
     return data1
