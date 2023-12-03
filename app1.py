@@ -193,9 +193,9 @@ if authentication_status:
         with c4:
             st.metric("Total Eventos", f"{total_eventos}")
         with c5:
-            st.metric("Total Recuperados", f"{total_recuperados}")
+            st.metric("Total Recuperados", f"{total_recuperados1}")
         with c6:
-            st.metric("Total Consumados", f"{total_consumados}")
+            st.metric("Total Consumados", f"{total_consumados1}")
 
         """
 
