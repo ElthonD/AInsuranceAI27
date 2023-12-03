@@ -123,7 +123,7 @@ if authentication_status:
     elif options=="Data Visualización":
         
         df = pd.DataFrame(obtener_df())
-        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y').dt.date
+        df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y').dt.date
         #df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')
         st.dataframe(df)
         print(df.dtypes)
