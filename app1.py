@@ -183,10 +183,12 @@ if authentication_status:
         #total_recuperados = df_selected_mes.groupby(["Estatus"] == 'RECUPERADO').value_counts()
         #total_consumados = df_selected_mes.groupby(["Estatus"] == 'CONSUMADO').value_counts()
 
-        total_recuperados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'RECUPERADO'].value_counts()
-        print(total_recuperados)
-        total_consumados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'CONSUMADO'].value_counts()
-        print(total_consumados)
+        total_recuperados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'RECUPERADO']
+        total_recuperados1 = total_recuperados.value_counts()
+        print(total_recuperados1)
+        total_consumados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'CONSUMADO']
+        total_consumados1 = total_consumados.value_counts()
+        print(total_consumados1)
         c4, c5, c6 = st.columns(3)
         with c4:
             st.metric("Total Eventos", f"{total_eventos}")
