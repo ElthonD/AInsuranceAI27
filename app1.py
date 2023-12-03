@@ -389,7 +389,7 @@ if authentication_status:
                    )
             fig = go.Figure(data=[sr_data1, sr_data2, sr_data3, sr_data4], layout=layout)
             fig.update_layout(barmode='stack')
-            st.plotly_chart(fig)
+            st.plotly_chart(fig, use_container_width=True)
 
         #c1, c2 = st.columns((1,1))
         #with c1:
@@ -403,7 +403,7 @@ if authentication_status:
         df_pie1 = pd.DataFrame(df_pie)
         df_pie1.reset_index(drop = False, inplace = True)
         df_pie1 = df_pie1.rename(columns={'Estatus':'Tipo de Evento', 0:'Total'})
-        plt.figure(figsize = (2,2))
+        plt.figure(figsize = (10,10))
         st.write(px.pie(df_pie1, values='Total', names='Tipo de Evento'))
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
