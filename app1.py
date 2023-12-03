@@ -179,9 +179,12 @@ if authentication_status:
         # Métricas
 
         total_eventos = df_selected_mes['Bitácora'].count()
-        total_recuperados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'RECUPERADO'].count()
+        total_recuperados = df_selected_mes.groupby(["Estatus"] == 'RECUPERADO').count()
+        total_consumados = df_selected_mes.groupby(["Estatus"] == 'CONSUMADO').count()
+
+        #total_recuperados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'RECUPERADO'].count()
         print(total_recuperados)
-        total_consumados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'CONSUMADO'].count()
+        #total_consumados = df_selected_mes.loc[df_selected_mes.loc[:, 'Estatus'] == 'CONSUMADO'].count()
         print(total_consumados)
         c4, c5, c6 = st.columns(3)
         with c4:
