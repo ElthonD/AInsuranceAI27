@@ -285,21 +285,21 @@ if authentication_status:
 
         def df_grafico(df):
     
-            df['Fecha y Hora'] = pd.to_datetime(df['Fecha y Hora'], format='%Y-%m-%d', errors='coerce')
+            df['Fecha'] = pd.to_datetime(df['Fecha'], format='%Y-%m-%d', errors='coerce')
 
             # Para Cumplimiento
             df1 = df.copy()
             df1 = df1.loc[df1.loc[:, 'Estatus'] == 'RECUPERADO']
-            df1.drop(['Dia','Motivo Entrada', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
-            df1 = df1.set_index('Fecha y Hora')
+            df1.drop(['Motivo Entrada', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+            df1 = df1.set_index('Fecha')
             df2 = pd.DataFrame(df1['Placas'].resample('M').count())
             df2 = df2.rename(columns={'Placas':'RECUPERADO'})
 
             # Para No Cumplimiento
             df3 = df.copy()
             df3 = df3.loc[df3.loc[:, 'Estatus'] == 'CONSUMADO']
-            df3.drop(['Dia','Motivo Entrada', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
-            df3 = df3.set_index('Fecha y Hora')
+            df3.drop(['Motivo Entrada', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+            df3 = df3.set_index('Fecha')
             df4 = pd.DataFrame(df3['Placas'].resample('M').count())
             df4 = df4.rename(columns={'Placas':'CONSUMADO'})
 
@@ -326,7 +326,7 @@ if authentication_status:
 
         def g_recuperacion(df):
 
-            sr_data1 = go.Bar(x = df['Fecha y Hora'],
+            sr_data1 = go.Bar(x = df['Fecha'],
                         y=df['RECUPERADO'],
                         opacity=0.8,
                         yaxis = 'y1',
@@ -334,7 +334,7 @@ if authentication_status:
                         text= [f'Recuperado(s): {x:.0f}' for x in df['RECUPERADO']]
                         )
     
-            sr_data2 = go.Bar(x = df['Fecha y Hora'],
+            sr_data2 = go.Bar(x = df['Fecha'],
                         y=df['CONSUMADO'],
                         opacity=0.8,
                         yaxis = 'y1',
