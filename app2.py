@@ -133,7 +133,7 @@ if authentication_status:
         
         tess = pd.DataFrame(obtener_df())
 
-        df = pd.DataFrame(on_update())
+        df = pd.DataFrame(on_update(tess))
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y')
         #df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')
