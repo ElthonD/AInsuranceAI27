@@ -290,7 +290,7 @@ if authentication_status:
             # Para Cumplimiento
             df1 = df.copy()
             df1 = df1.loc[df1.loc[:, 'Estatus'] == 'RECUPERADO']
-            df1.drop(['Motivo Entrada', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+            df1.drop(['Motivo de Entrada', 'Economico', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
             df1 = df1.set_index('Fecha')
             df2 = pd.DataFrame(df1['Placas'].resample('M').count())
             df2 = df2.rename(columns={'Placas':'RECUPERADO'})
@@ -298,7 +298,7 @@ if authentication_status:
             # Para No Cumplimiento
             df3 = df.copy()
             df3 = df3.loc[df3.loc[:, 'Estatus'] == 'CONSUMADO']
-            df3.drop(['Motivo Entrada', 'Eco', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
+            df3.drop(['Motivo de Entrada', 'Economico', 'Marca', 'Modelo', 'Latitud', 'Longitud','Estado', 'Municipio', 'Tramo'], axis = 'columns', inplace=True)    
             df3 = df3.set_index('Fecha')
             df4 = pd.DataFrame(df3['Placas'].resample('M').count())
             df4 = df4.rename(columns={'Placas':'CONSUMADO'})
@@ -393,12 +393,12 @@ if authentication_status:
 
         c1, c2 = st.columns((1,1))
         with c1:
-            st.markdown("<h3 style='text-align: left;'>Gráfico Mensual de Robos</h3>", unsafe_allow_html=True)
+            st.markdown("<h5 style='text-align: left;'>Gráfico Mensual de Robos</h5>", unsafe_allow_html=True)
             d1 = df_grafico(df_selected_mes)
             #st.write(d1)
             g1 = g_recuperacion(d1)
         with c2:
-            st.markdown('### Segmentación de Intentos de Robos')
+            st.markdown("<h5 style='text-align: left;'>Segmentación de Intentos de Robos</h5>", unsafe_allow_html=True)
             df_pie = df_selected_mes.groupby(['Estatus']).size()
             df_pie1 = pd.DataFrame(df_pie)
             df_pie1.reset_index(drop = False, inplace = True)
