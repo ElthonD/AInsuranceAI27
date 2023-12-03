@@ -142,11 +142,11 @@ if authentication_status:
             if allC1:
                 sorted_unique_cliente = sorted(df['Cliente'].unique())
                 selected_cliente = container1.multiselect('Cliente(es):', sorted_unique_cliente, sorted_unique_cliente, key="cliente1")
-                df_selected_cliente = df[df['Cliente'].isin(sorted_unique_cliente)].astype(str)
+                df_selected_cliente = df[df['Cliente'].isin(selected_cliente)].astype(str)
             else:
                 sorted_unique_cliente = sorted(df['Cliente'].unique())
                 selected_cliente = container1.multiselect('Cliente(es)', sorted_unique_cliente, key="cliente2")
-                df_selected_cliente = df[df['Cliente'].isin(sorted_unique_cliente)].astype(str)
+                df_selected_cliente = df[df['Cliente'].isin(selected_cliente)].astype(str)
             
         with c2:
             container2 = st.container()
