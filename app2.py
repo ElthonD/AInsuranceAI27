@@ -44,7 +44,7 @@ def obtener_df():
 
 # ---- Update Database
 
-def update_data():
+def update_data(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates):
     
     values_db = ainsurance_db.fetch_all_ainsurance()
 
@@ -68,14 +68,6 @@ def update_data():
     data_edit = ainsurance_db.update_ainsurance(fechas, usuarios, bitacoras, clientes, mentradas, marcas, modelos, placass, economicos, latitudes, longitudes, estados, municipios, tramos, vestatus, comentarios, updates = {"Fecha": fecha, "Nombre Monitorista": ndocumentador,"Bitácora": nBitacora, "Cliente": sCliente, "Motivo de Entrada": mEntrada, "Marca": marca, "Modelo": modelo,"Placas": placas, "Economico": economico, "Latitud": latitud, "Longitud": longitud, "Estado": estado,"Municipio": municipio,"Tramo": tramo, "Estatus": estatus, "Observaciones": coment})
     
     return data_edit
-
-def on_update():
-    data = ainsurance_db.fetch_all_ainsurance()
-    data1 = ainsurance_db.update_ainsurance(updates=data)
-    return data1
-
-def editar_df(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates):
-    return ainsurance_db.update_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates = {"Fecha": fecha, "Nombre Monitorista": ndocumentador,"Bitácora": nBitacora, "Cliente": sCliente, "Motivo de Entrada": mEntrada, "Marca": marca, "Modelo": modelo,"Placas": placas, "Economico": economico, "Latitud": latitud, "Longitud": longitud, "Estado": estado,"Municipio": municipio,"Tramo": tramo, "Estatus": estatus, "Observaciones": coment})
 
 col4, col5, col6 = st.columns([1,1,1])
 
