@@ -48,22 +48,22 @@ def update_data():
     
     values_db = ainsurance_db.fetch_all_ainsurance()
 
-    fechas = [user["fecha"] for user in values_db]  
-    usuarios = [user["ndocumentador"] for user in values_db]
-    bitacoras = [user["nBitacora"] for user in values_db]
-    clientes = [user["sCliente"] for user in values_db]
-    mentradas = [user["mEntrada"] for user in values_db]
-    marcas = [user["marca"] for user in values_db]
-    modelos = [user["modelo"] for user in values_db]
-    placass = [user["placas"] for user in values_db]
-    economicos = [user["economico"] for user in values_db]
-    latitudes = [user["latitud"] for user in values_db]
-    longitudes = [user["longitud"] for user in values_db]
-    estados = [user["estado"] for user in values_db]
-    municipios = [user["municipio"] for user in values_db]
-    tramos = [user["tramo"] for user in values_db]
-    vestatus = [user["estatus"] for user in values_db]
-    comentarios = [user["coment"] for user in values_db]
+    fechas = [user["Fecha"] for user in values_db]  
+    usuarios = [user["Nombre Monitorista"] for user in values_db]
+    bitacoras = [user["Bitácora"] for user in values_db]
+    clientes = [user["Cliente"] for user in values_db]
+    mentradas = [user["Motivo de Entrada"] for user in values_db]
+    marcas = [user["Marca"] for user in values_db]
+    modelos = [user["Modelo"] for user in values_db]
+    placass = [user["Placas"] for user in values_db]
+    economicos = [user["Economico"] for user in values_db]
+    latitudes = [user["Latitud"] for user in values_db]
+    longitudes = [user["Longitud"] for user in values_db]
+    estados = [user["Estado"] for user in values_db]
+    municipios = [user["Municipio"] for user in values_db]
+    tramos = [user["Tramo"] for user in values_db]
+    vestatus = [user["Estatus"] for user in values_db]
+    comentarios = [user["Observaciones"] for user in values_db]
     
     data_edit = ainsurance_db.update_ainsurance(fechas, usuarios, bitacoras, clientes, mentradas, marcas, modelos, placass, economicos, latitudes, longitudes, estados, municipios, tramos, vestatus, comentarios, updates = {"Fecha": fecha, "Nombre Monitorista": ndocumentador,"Bitácora": nBitacora, "Cliente": sCliente, "Motivo de Entrada": mEntrada, "Marca": marca, "Modelo": modelo,"Placas": placas, "Economico": economico, "Latitud": latitud, "Longitud": longitud, "Estado": estado,"Municipio": municipio,"Tramo": tramo, "Estatus": estatus, "Observaciones": coment})
     
