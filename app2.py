@@ -42,14 +42,40 @@ def obtener_df():
     data = ainsurance_db.fetch_all_ainsurance()
     return data
 
+# ---- Update Database
+
+def update_data():
+    
+    values_db = ainsurance_db.fetch_all_ainsurance()
+
+    fechas = [user["fecha"] for user in values_db]  
+    usuarios = [user["ndocumentador"] for user in values_db]
+    bitacoras = [user["nBitacora"] for user in values_db]
+    clientes = [user["sCliente"] for user in values_db]
+    mentradas = [user["mEntrada"] for user in values_db]
+    marcas = [user["marca"] for user in values_db]
+    modelos = [user["modelo"] for user in values_db]
+    placass = [user["placas"] for user in values_db]
+    economicos = [user["economico"] for user in values_db]
+    latitudes = [user["latitud"] for user in values_db]
+    longitudes = [user["longitud"] for user in values_db]
+    estados = [user["estado"] for user in values_db]
+    municipios = [user["municipio"] for user in values_db]
+    tramos = [user["tramo"] for user in values_db]
+    vestatus = [user["estatus"] for user in values_db]
+    comentarios = [user["coment"] for user in values_db]
+    
+    data_edit = ainsurance_db.update_ainsurance(fechas, usuarios, bitacoras, clientes, mentradas, marcas, modelos, placass, economicos, latitudes, longitudes, estados, municipios, tramos, vestatus, comentarios, updates = {"Fecha": fecha, "Nombre Monitorista": ndocumentador,"Bitácora": nBitacora, "Cliente": sCliente, "Motivo de Entrada": mEntrada, "Marca": marca, "Modelo": modelo,"Placas": placas, "Economico": economico, "Latitud": latitud, "Longitud": longitud, "Estado": estado,"Municipio": municipio,"Tramo": tramo, "Estatus": estatus, "Observaciones": coment})
+    
+    return data_edit
+
 def on_update():
     data = ainsurance_db.fetch_all_ainsurance()
     data1 = ainsurance_db.update_ainsurance(updates=data)
     return data1
 
 def editar_df(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates):
-    #data = ainsurance_db.fetch_all_ainsurance()
-    return ainsurance_db.update_ainsurance(updates, fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment)
+    return ainsurance_db.update_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates = {"Fecha": fecha, "Nombre Monitorista": ndocumentador,"Bitácora": nBitacora, "Cliente": sCliente, "Motivo de Entrada": mEntrada, "Marca": marca, "Modelo": modelo,"Placas": placas, "Economico": economico, "Latitud": latitud, "Longitud": longitud, "Estado": estado,"Municipio": municipio,"Tramo": tramo, "Estatus": estatus, "Observaciones": coment})
 
 col4, col5, col6 = st.columns([1,1,1])
 
@@ -131,9 +157,7 @@ if authentication_status:
 
     elif options=="Data Visualización":
         
-        tess = pd.DataFrame(obtener_df())
-
-        df = pd.DataFrame(on_update())
+        df = pd.DataFrame(update_data())
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y')
         #df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')

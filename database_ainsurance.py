@@ -26,13 +26,9 @@ def fetch_all_ainsurance():
     res = db_ainsurance.fetch()
     return res.items
 
-#def update_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates):
+def update_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates):
     #"""Si el elemento se actualiza, devuelve None. De lo contrario, se plantea una excepción."""
-    #return db_ainsurance.update(updates, fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment)
-
-def update_ainsurance(updates):
-    """Si el elemento se actualiza, devuelve None. De lo contrario, se plantea una excepción."""
-    return db_ainsurance.update(updates)
+    return db_ainsurance.update(updates, fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment)
 
 def delete_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment):
     """Siempre devuelve None, incluso si la clave no existe"""
