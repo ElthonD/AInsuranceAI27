@@ -34,6 +34,6 @@ def delete_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca
     """Siempre devuelve None, incluso si la clave no existe"""
     return db_ainsurance.delete(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment)
 
-def to_update(df):
+def to_update(df, key_name):
     #"""Si el elemento se actualiza, devuelve None. De lo contrario, se plantea una excepción."""
-    return db_ainsurance.update(df)
+    return db_ainsurance.update(updates=df, key=[key_name])
