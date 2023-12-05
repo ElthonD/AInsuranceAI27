@@ -220,7 +220,6 @@ if authentication_status:
                 edited_df.ainsurance_db.to_update(edited_cells)
                 st.success("¡Actualizado!")
 
-
         # Métricas
 
         total_eventos = len(df_selected_mes['Bitácora'])
