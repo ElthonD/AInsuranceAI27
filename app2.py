@@ -216,7 +216,7 @@ if authentication_status:
         col19, col20, col21, col22, col23 = st.columns([1,1,1,1,1])
         with col21:
             if st.button("Actualizar"):
-                edited_cells = st.session_state.df_selected_mes['edited_cells']
+                edited_cells = st.session_state['edited_cells']
                 ainsurance_db.to_update(edited_cells)
                 st.success("¡Actualizado!")
 
