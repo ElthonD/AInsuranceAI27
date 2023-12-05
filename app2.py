@@ -217,7 +217,7 @@ if authentication_status:
         with col21:
             if st.button("Actualizar"):
                 edited_cells = st.session_state.df_selected_mes['edited_cells']
-                edited_df.ainsurance_db.to_update(edited_cells)
+                ainsurance_db.to_update(edited_cells)
                 st.success("¡Actualizado!")
 
         # Métricas
