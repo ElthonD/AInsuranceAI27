@@ -149,7 +149,7 @@ if authentication_status:
 
     elif options=="Data Visualización":
         
-        df = pd.DataFrame(update_data())
+        df = pd.DataFrame(obtener_df())
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d/%m/%Y')
         #df = df[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         df['Fecha'] = pd.to_datetime(df['Fecha'], format='%d-%m-%Y', errors='coerce')
@@ -202,7 +202,24 @@ if authentication_status:
         # Dataframe
         st.markdown("<h5 style='text-align: left;'>Datos históricos de los eventos</h5>", unsafe_allow_html=True)
         df_selected_mes = df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
-        st.dataframe(df_selected_mes)
+        #st.dataframe(df_selected_mes)
+
+        def callback1(key_name):
+            st.session_state[key_name]
+
+        key_name = 'my_df'
+        edited_df = st.data_editor(data=df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']], 
+                               num_rows="dynamic",
+                               on_change=callback1,
+                               args=[key_name],
+                               key=key_name)
+        col19, col20, col21, col22, col23 = st.columns([1,1,1,1,1])
+        with col21:
+            if st.button("Actualizar"):
+                edited_cells = st.session_state.df_selected_mes['edited_cells']
+                edited_df.ainsurance_db.to_update(edited_cells)
+                st.success("¡Actualizado!")
+
 
         # Métricas
 
