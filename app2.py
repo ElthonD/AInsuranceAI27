@@ -204,8 +204,6 @@ if authentication_status:
         df_selected_mes = df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         #st.dataframe(df_selected_mes)
 
-        st.session_state.df_selected_mes
-
         def callback1(key_name):
             st.session_state[key_name]
 
