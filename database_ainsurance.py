@@ -60,7 +60,7 @@ def put_new_register(edited_df):
             # and our key is the username.
             if d['key'] is None:
                 continue
-            key = d['username']
+            key = d['key']
             d.pop('key')
             db_ainsurance.put(d, key=key)
             cnt += 1
