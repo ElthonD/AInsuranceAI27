@@ -44,30 +44,52 @@ def obtener_df():
 
 # ---- Update Database
 
-def update_data(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca, modelo, placas, economico, latitud, longitud, estado, municipio, tramo, estatus, coment, updates):
-    
-    values_db = ainsurance_db.fetch_all_ainsurance()
+DF_HEADER = ['key', 'Bitácora', 'Cliente', 'Economico', 'Estado', 'Estatus', 'Fecha', 'Latitud', 'Longitud', 'Marca', 'Modelo', 'Motivo de Entrada', 'Municipio', 'Nombre Monitorista', 'Observaciones', 'Placas', 'Tramo']
 
-    fechas = [user["Fecha"] for user in values_db]  
-    usuarios = [user["Nombre Monitorista"] for user in values_db]
-    bitacoras = [user["Bitácora"] for user in values_db]
-    clientes = [user["Cliente"] for user in values_db]
-    mentradas = [user["Motivo de Entrada"] for user in values_db]
-    marcas = [user["Marca"] for user in values_db]
-    modelos = [user["Modelo"] for user in values_db]
-    placass = [user["Placas"] for user in values_db]
-    economicos = [user["Economico"] for user in values_db]
-    latitudes = [user["Latitud"] for user in values_db]
-    longitudes = [user["Longitud"] for user in values_db]
-    estados = [user["Estado"] for user in values_db]
-    municipios = [user["Municipio"] for user in values_db]
-    tramos = [user["Tramo"] for user in values_db]
-    vestatus = [user["Estatus"] for user in values_db]
-    comentarios = [user["Observaciones"] for user in values_db]
+def get_all_entries_from_deta_db():
+    response = ainsurance_db.fetch()
+    items: list[dict] = response.items
+    return items
+
+def delete_all_enries_in_deta_db():
+    items: list[dict] = get_all_entries_from_deta_db()
+    for d in items:
+        ainsurance_db.delete(d['key'])
+
+def update_deta_db(edited_df):
+    """Delete all and Add new entries.
     
-    data_edit = ainsurance_db.update_ainsurance(fechas, usuarios, bitacoras, clientes, mentradas, marcas, modelos, placass, economicos, latitudes, longitudes, estados, municipios, tramos, vestatus, comentarios, updates = {"Fecha": fecha, "Nombre Monitorista": ndocumentador,"Bitácora": nBitacora, "Cliente": sCliente, "Motivo de Entrada": mEntrada, "Marca": marca, "Modelo": modelo,"Placas": placas, "Economico": economico, "Latitud": latitud, "Longitud": longitud, "Estado": estado,"Municipio": municipio,"Tramo": tramo, "Estatus": estatus, "Observaciones": coment})
+    This is a suboptimal method, but is simple without too
+    much complications.
     
-    return data_edit
+    Complications to handle are:
+    * Updates in the data editor
+    * Deleted rows
+    * Added rows
+
+    Instead of those complications, we just delete the current entries
+    in the deta db and add new entries from the edited df.
+    """
+    if len(edited_df):
+        cnt = 0
+
+        # 1. Delete
+        delete_all_enries_in_deta_db()
+
+        # 2. Add
+        list_of_dict = edited_df.to_dict('records')
+        for d in list_of_dict:
+            # There should be username, because the deta db needs a key
+            # and our key is the username.
+            if d['key'] is None:
+                continue
+            key = d['key']
+            d.pop('key')
+            ainsurance_db.put(d, key=key)
+            cnt += 1
+
+        if cnt:
+            st.success('Actualizado')
 
 col4, col5, col6 = st.columns([1,1,1])
 
@@ -204,21 +226,22 @@ if authentication_status:
         df_selected_mes = df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         #st.dataframe(df_selected_mes)
 
-        def callback1(key_name):
-            st.session_state[key_name]
+        items = get_all_entries_from_deta_db()
+        if len(items) < 1:
+            df = pd.DataFrame(columns=DF_HEADER)
+        else:
+            df = pd.DataFrame(items)
 
-        key_name = 'my_df'
-        edited_df = st.data_editor(data=df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']], 
-                               num_rows="dynamic",
-                               on_change=callback1,
-                               args=[key_name],
-                               key=key_name)
-        col19, col20, col21, col22, col23 = st.columns([1,1,1,1,1])
-        with col21:
-            if st.button("Actualizar"):
-                edited_cells = st.session_state[key_name]
-                ainsurance_db.to_update(edited_cells)
-                st.success("¡Actualizado!")
+        # Hide the key in display. In Deta db, the key is the username.
+        edited_df = st.data_editor(
+            df,
+            num_rows="dynamic",
+            key='account',
+            column_config={"key": None}
+            )
+
+        if st.button("Update Deta db"):
+            update_deta_db(edited_df)
 
         # Métricas
 
