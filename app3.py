@@ -380,11 +380,11 @@ if authentication_status:
             st.markdown("<h2 style='text-align: left;'>Edición de Marco de Datos de los Eventos AInsurance</h2>", unsafe_allow_html=True)
             st.write(f"Marco de datos para editar eventos de los servicios (Bitácoras) AInsurance de AI27 registrados con errores o cambios de estatus posteriores.")
                 
-            items = ainsurance_db.fetch_all_ainsurance()
-            if len(items) < 1:
+            elementos = ainsurance_db.fetch_all_ainsurance()
+            if len(elementos) < 1:
                 df1 = pd.DataFrame(columns=DF_HEADER)
             else:
-                df1 = pd.DataFrame(items)
+                df1 = pd.DataFrame(elementos)
 
             # Hide the key in display. In Deta db, the key is the username.
             edited_df = st.data_editor(
@@ -1190,11 +1190,11 @@ if authentication_status:
             st.markdown("<h2 style='text-align: left;'>Edición de Marco de Datos de los Eventos AInsurance</h2>", unsafe_allow_html=True)
             st.write(f"Marco de datos para editar eventos de los servicios (Bitácoras) AInsurance de AI27 registrados con errores o cambios de estatus posteriores.")
             
-            items = ainsurance_db.fetch_all_ainsurance()
-            if len(items) < 1:
+            elementos = ainsurance_db.fetch_all_ainsurance()
+            if len(elementos) < 1:
                 df1 = pd.DataFrame(columns=DF_HEADER)
             else:
-                df1 = pd.DataFrame(items)
+                df1 = pd.DataFrame(elementos)
 
             # Hide the key in display. In Deta db, the key is the username.
             edited_df = st.data_editor(
@@ -1340,11 +1340,11 @@ if authentication_status:
             st.markdown("<h2 style='text-align: left;'>Edición de Marco de Datos de los Eventos AInsurance</h2>", unsafe_allow_html=True)
             st.write(f"Marco de datos para editar eventos de los servicios (Bitácoras) AInsurance de AI27 registrados con errores o cambios de estatus posteriores.")
             
-            items = ainsurance_db.fetch_all_ainsurance()
-            if len(items) < 1:
+            elementos = ainsurance_db.fetch_all_ainsurance()
+            if len(elementos) < 1:
                 df1 = pd.DataFrame(columns=DF_HEADER)
             else:
-                df1 = pd.DataFrame(items)
+                df1 = pd.DataFrame(elementos)
 
             # Hide the key in display. In Deta db, the key is the username.
             edited_df = st.data_editor(
@@ -1491,11 +1491,11 @@ if authentication_status:
             st.markdown("<h2 style='text-align: left;'>Edición de Marco de Datos de los Eventos AInsurance</h2>", unsafe_allow_html=True)
             st.write(f"Marco de datos para editar eventos de los servicios (Bitácoras) AInsurance de AI27 registrados con errores o cambios de estatus posteriores.")
             
-            items = ainsurance_db.fetch_all_ainsurance()
-            if len(items) < 1:
+            elementos = ainsurance_db.fetch_all_ainsurance()
+            if len(elementos) < 1:
                 df1 = pd.DataFrame(columns=DF_HEADER)
             else:
-                df1 = pd.DataFrame(items)
+                df1 = pd.DataFrame(elementos)
 
             # Hide the key in display. In Deta db, the key is the username.
             edited_df = st.data_editor(
@@ -1641,11 +1641,11 @@ if authentication_status:
             st.markdown("<h2 style='text-align: left;'>Edición de Marco de Datos de los Eventos AInsurance</h2>", unsafe_allow_html=True)
             st.write(f"Marco de datos para editar eventos de los servicios (Bitácoras) AInsurance de AI27 registrados con errores o cambios de estatus posteriores.")
             
-            items = ainsurance_db.fetch_all_ainsurance()
-            if len(items) < 1:
+            elementos = ainsurance_db.fetch_all_ainsurance()
+            if len(elementos) < 1:
                 df1 = pd.DataFrame(columns=DF_HEADER)
             else:
-                df1 = pd.DataFrame(items)
+                df1 = pd.DataFrame(elementos)
 
             # Hide the key in display. In Deta db, the key is the username.
             edited_df = st.data_editor(
