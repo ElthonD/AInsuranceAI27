@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 import database_users as user_db
 import database_ainsurance as ainsurance_db
 
-
 # Title of the main page
 path_favicon = './img/favicon1.png'
 im = Image.open(path_favicon)
@@ -532,7 +531,7 @@ if authentication_status:
 
             with c10:
                 container4 = st.container()
-                allC4 = st.checkbox("Seleccionar Todos", key="chk3")
+                allC4 = st.checkbox("Seleccionar Todos", key="chk4")
                 if allC4:
                     sorted_unique_cliente1 = sorted(df1['Cliente'].unique())
                     selected_cliente2 = container4.multiselect('Cliente(es):', sorted_unique_cliente1, sorted_unique_cliente1, key="cliente3")
@@ -544,7 +543,7 @@ if authentication_status:
         
             with c11:
                 container5 = st.container()
-                allC5 = st.checkbox("Seleccionar Todos", key="chk4")
+                allC5 = st.checkbox("Seleccionar Todos", key="chk5")
                 if allC5:
                     sorted_unique_ao2 = sorted(df_selected_cliente2['Año'].unique())
                     selected_ao2 = container5.multiselect('Año(s):', sorted_unique_ao2, sorted_unique_ao2, key="año3") 
@@ -556,7 +555,7 @@ if authentication_status:
     
             with c12:
                 container6 = st.container()
-                allC6 = st.checkbox("Seleccionar Todos", key="chk5")
+                allC6 = st.checkbox("Seleccionar Todos", key="chk6")
                 if allC6:
                     sorted_unique_mes2 = sorted(df_selected_ao2['Mes'].unique())
                     selected_mes2 = container6.multiselect('Mes(es):', sorted_unique_mes2, sorted_unique_mes2, key="mes2") 
@@ -570,8 +569,8 @@ if authentication_status:
             mapa = map_coropleta_fol(df_selected_mes2)
             c13, c14, c15, c16, c17 = st.columns([1,1,1,1,1])
             with c15:
-                export = st.button("Descargar")
-                if export:
+                export_mapa = st.button("Descargar Mapa")
+                if export_mapa:
                     mapa.save("mapa.html")
                     st.success("¡Mapa Descargado!")
 
@@ -715,7 +714,7 @@ if authentication_status:
 
             with c10:
                 container4 = st.container()
-                allC4 = st.checkbox("Seleccionar Todos", key="chk3")
+                allC4 = st.checkbox("Seleccionar Todos", key="chk4")
                 if allC4:
                     sorted_unique_cliente1 = sorted(df1['Cliente'].unique())
                     selected_cliente2 = container4.multiselect('Cliente(es):', sorted_unique_cliente1, sorted_unique_cliente1, key="cliente3")
@@ -727,7 +726,7 @@ if authentication_status:
         
             with c11:
                 container5 = st.container()
-                allC5 = st.checkbox("Seleccionar Todos", key="chk4")
+                allC5 = st.checkbox("Seleccionar Todos", key="chk5")
                 if allC5:
                     sorted_unique_ao2 = sorted(df_selected_cliente2['Año'].unique())
                     selected_ao2 = container5.multiselect('Año(s):', sorted_unique_ao2, sorted_unique_ao2, key="año3") 
@@ -739,7 +738,7 @@ if authentication_status:
     
             with c12:
                 container6 = st.container()
-                allC6 = st.checkbox("Seleccionar Todos", key="chk5")
+                allC6 = st.checkbox("Seleccionar Todos", key="chk6")
                 if allC6:
                     sorted_unique_mes2 = sorted(df_selected_ao2['Mes'].unique())
                     selected_mes2 = container6.multiselect('Mes(es):', sorted_unique_mes2, sorted_unique_mes2, key="mes2") 
@@ -898,7 +897,7 @@ if authentication_status:
 
             with c10:
                 container4 = st.container()
-                allC4 = st.checkbox("Seleccionar Todos", key="chk3")
+                allC4 = st.checkbox("Seleccionar Todos", key="chk4")
                 if allC4:
                     sorted_unique_cliente1 = sorted(df1['Cliente'].unique())
                     selected_cliente2 = container4.multiselect('Cliente(es):', sorted_unique_cliente1, sorted_unique_cliente1, key="cliente3")
@@ -910,7 +909,7 @@ if authentication_status:
         
             with c11:
                 container5 = st.container()
-                allC5 = st.checkbox("Seleccionar Todos", key="chk4")
+                allC5 = st.checkbox("Seleccionar Todos", key="chk5")
                 if allC5:
                     sorted_unique_ao2 = sorted(df_selected_cliente2['Año'].unique())
                     selected_ao2 = container5.multiselect('Año(s):', sorted_unique_ao2, sorted_unique_ao2, key="año3") 
@@ -922,7 +921,7 @@ if authentication_status:
     
             with c12:
                 container6 = st.container()
-                allC6 = st.checkbox("Seleccionar Todos", key="chk5")
+                allC6 = st.checkbox("Seleccionar Todos", key="chk6")
                 if allC6:
                     sorted_unique_mes2 = sorted(df_selected_ao2['Mes'].unique())
                     selected_mes2 = container6.multiselect('Mes(es):', sorted_unique_mes2, sorted_unique_mes2, key="mes2") 
@@ -1081,7 +1080,7 @@ if authentication_status:
 
             with c10:
                 container4 = st.container()
-                allC4 = st.checkbox("Seleccionar Todos", key="chk3")
+                allC4 = st.checkbox("Seleccionar Todos", key="chk4")
                 if allC4:
                     sorted_unique_cliente1 = sorted(df1['Cliente'].unique())
                     selected_cliente2 = container4.multiselect('Cliente(es):', sorted_unique_cliente1, sorted_unique_cliente1, key="cliente3")
@@ -1093,7 +1092,7 @@ if authentication_status:
         
             with c11:
                 container5 = st.container()
-                allC5 = st.checkbox("Seleccionar Todos", key="chk4")
+                allC5 = st.checkbox("Seleccionar Todos", key="chk5")
                 if allC5:
                     sorted_unique_ao2 = sorted(df_selected_cliente2['Año'].unique())
                     selected_ao2 = container5.multiselect('Año(s):', sorted_unique_ao2, sorted_unique_ao2, key="año3") 
@@ -1105,7 +1104,7 @@ if authentication_status:
     
             with c12:
                 container6 = st.container()
-                allC6 = st.checkbox("Seleccionar Todos", key="chk5")
+                allC6 = st.checkbox("Seleccionar Todos", key="chk6")
                 if allC6:
                     sorted_unique_mes2 = sorted(df_selected_ao2['Mes'].unique())
                     selected_mes2 = container6.multiselect('Mes(es):', sorted_unique_mes2, sorted_unique_mes2, key="mes2") 
@@ -1270,7 +1269,7 @@ if authentication_status:
             with c15:
                 export = st.button("Descargar")
                 if export:
-                    mapa.save("mapa.html")
+                    mapa.save('mapa.html')
                     st.success("¡Mapa Descargado!")
 
     elif username == 'sdominguez':
