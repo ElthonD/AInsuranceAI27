@@ -282,7 +282,7 @@ names = [user["name"] for user in users]
 hashed_passwords = [user["password"] for user in users]
 
 #authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "ai27_ainsurance", "abcdef", cookie_expiry_days=30)
-authenticator = stauth.Authenticate(names, usernames, hashed_passwords)
+authenticator = stauth.Authenticate(names, usernames, hashed_passwords, "ai27_ainsurance", "abcdef")
 
 # --- DATABASE INTERFACE ---
 
