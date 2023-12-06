@@ -47,8 +47,8 @@ def get_all_entries_from_deta_db():
     items: list[dict] = response.items
     return items
 
-DF_HEADER = ['key', 'Bitácora', 'Cliente', 'Economico', 'Estado', 'Estatus', 'Fecha', 'Latitud', 'Longitud', 'Marca', 'Modelo', 'Motivo de Entrada', 'Municipio', 'Nombre Monitorista', 'Observaciones', 'Placas', 'Tramo']
-
+#DF_HEADER = ['key', 'Bitácora', 'Cliente', 'Economico', 'Estado', 'Estatus', 'Fecha', 'Latitud', 'Longitud', 'Marca', 'Modelo', 'Motivo de Entrada', 'Municipio', 'Nombre Monitorista', 'Observaciones', 'Placas', 'Tramo']
+DF_HEADER = ['key','Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']
 col4, col5, col6 = st.columns([1,1,1])
 
 with col5:
@@ -187,13 +187,13 @@ if authentication_status:
         #items = get_all_entries_from_deta_db()
         items = ainsurance_db.fetch_all_ainsurance()
         if len(items) < 1:
-            df = pd.DataFrame(columns=DF_HEADER)
+            df1 = pd.DataFrame(columns=DF_HEADER)
         else:
-            df = pd.DataFrame(items)
+            df1 = pd.DataFrame(items)
 
         # Hide the key in display. In Deta db, the key is the username.
         edited_df = st.data_editor(
-            df,
+            df1,
             num_rows="dynamic",
             key='account',
             column_config={"key": None}
