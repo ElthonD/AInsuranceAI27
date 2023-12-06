@@ -42,54 +42,12 @@ def obtener_df():
     data = ainsurance_db.fetch_all_ainsurance()
     return data
 
-# ---- Update Database
-
-DF_HEADER = ['key', 'Bitácora', 'Cliente', 'Economico', 'Estado', 'Estatus', 'Fecha', 'Latitud', 'Longitud', 'Marca', 'Modelo', 'Motivo de Entrada', 'Municipio', 'Nombre Monitorista', 'Observaciones', 'Placas', 'Tramo']
-
 def get_all_entries_from_deta_db():
-    response = ainsurance_db.fetch()
+    response = ainsurance_db.fetch_all_ainsurance()
     items: list[dict] = response.items
     return items
 
-def delete_all_enries_in_deta_db():
-    items: list[dict] = get_all_entries_from_deta_db()
-    for d in items:
-        ainsurance_db.delete(d['key'])
-
-def update_deta_db(edited_df):
-    """Delete all and Add new entries.
-    
-    This is a suboptimal method, but is simple without too
-    much complications.
-    
-    Complications to handle are:
-    * Updates in the data editor
-    * Deleted rows
-    * Added rows
-
-    Instead of those complications, we just delete the current entries
-    in the deta db and add new entries from the edited df.
-    """
-    if len(edited_df):
-        cnt = 0
-
-        # 1. Delete
-        delete_all_enries_in_deta_db()
-
-        # 2. Add
-        list_of_dict = edited_df.to_dict('records')
-        for d in list_of_dict:
-            # There should be username, because the deta db needs a key
-            # and our key is the username.
-            if d['key'] is None:
-                continue
-            key = d['key']
-            d.pop('key')
-            ainsurance_db.put(d, key=key)
-            cnt += 1
-
-        if cnt:
-            st.success('Actualizado')
+DF_HEADER = ['key', 'Bitácora', 'Cliente', 'Economico', 'Estado', 'Estatus', 'Fecha', 'Latitud', 'Longitud', 'Marca', 'Modelo', 'Motivo de Entrada', 'Municipio', 'Nombre Monitorista', 'Observaciones', 'Placas', 'Tramo']
 
 col4, col5, col6 = st.columns([1,1,1])
 
@@ -239,9 +197,10 @@ if authentication_status:
             key='account',
             column_config={"key": None}
             )
-
-        if st.button("Update Deta db"):
-            update_deta_db(edited_df)
+        col24, col25, col26, col27, col28 = st.columns([1,1,1,1,1])
+        with col26:
+            if st.button("Actualizar"):
+                ainsurance_db.put_new_register(edited_df)
 
         # Métricas
 

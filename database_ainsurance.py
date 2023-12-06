@@ -1,5 +1,5 @@
 import os
-
+import streamlit as st
 from deta import Deta
 from dotenv import load_dotenv
 
@@ -37,3 +37,35 @@ def delete_ainsurance(fecha, ndocumentador, nBitacora, sCliente, mEntrada, marca
 def to_update(df):
     #"""Si el elemento se actualiza, devuelve None. De lo contrario, se plantea una excepción."""
     return db_ainsurance.update(df)
+
+# Funciones para actualizar DB
+
+def delete_all_registers():
+    items: list[dict] = fetch_all_ainsurance()
+    for d in items:
+        db_ainsurance.delete(d['key'])
+
+def put_new_register(edited_df):
+    
+    if len(edited_df):
+        cnt = 0
+
+        # 1. Delete
+        delete_all_registers()
+
+        # 2. Add
+        list_of_dict = edited_df.to_dict('records')
+        for d in list_of_dict:
+            # There should be username, because the deta db needs a key
+            # and our key is the username.
+            if d['key'] is None:
+                continue
+            key = d['username']
+            d.pop('key')
+            db_ainsurance.put(d, key=key)
+            cnt += 1
+
+        if cnt:
+            st.success('Actualizado')
+
+
