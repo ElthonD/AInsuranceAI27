@@ -184,7 +184,8 @@ if authentication_status:
         df_selected_mes = df_selected_mes[['Fecha', 'Nombre Monitorista', 'Bitácora', 'Cliente', 'Motivo de Entrada', 'Marca', 'Modelo', 'Placas', 'Economico', 'Latitud', 'Longitud', 'Estado', 'Municipio', 'Tramo', 'Estatus', 'Observaciones']]
         #st.dataframe(df_selected_mes)
 
-        items = get_all_entries_from_deta_db()
+        #items = get_all_entries_from_deta_db()
+        items = ainsurance_db.fetch_all_ainsurance()
         if len(items) < 1:
             df = pd.DataFrame(columns=DF_HEADER)
         else:
